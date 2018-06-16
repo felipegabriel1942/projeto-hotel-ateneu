@@ -43,6 +43,9 @@ public class UsuarioBean {
 	
 	
 	
+	
+	
+	
 	public String cadastroUsuario() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
