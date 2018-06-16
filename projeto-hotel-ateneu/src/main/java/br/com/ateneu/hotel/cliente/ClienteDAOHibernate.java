@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-
+/**
+ * Esta classe implementa os metodos da interface ClienteDAO dando funcionabilidade aos metodos
+ * @author felipe
+ *
+ */
 public class ClienteDAOHibernate implements ClienteDAO{
 	
 	
