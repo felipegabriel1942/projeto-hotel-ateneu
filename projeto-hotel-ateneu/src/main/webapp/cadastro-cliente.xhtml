@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Bem-vindo ao Hotel Ateneu</title>
+	<h:outputStylesheet library="css" name="estilo.css" />
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="Cliente">
+				<p:menuitem value="Cadastro" url="cadastro-cliente.xhtml" />
+			</p:submenu>
+		</p:menubar>
+
+		<p:fieldset legend="Informações do cliente">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="nome" value="Nome Completo: "/>
+				<p:inputText id="nome" required="true" value="" size="45"/>
+				
+				<p:outputLabel for="cpf" value="CPF: "/>
+				<p:inputText id="cpf" required="true" value="" size="15" maxlength="11"/>
+				
+				
+        		
+			</h:panelGrid>
+
+		</p:fieldset>
+	</h:form>
+
+</h:body>
+</html>

@@ -12,38 +12,49 @@ import br.com.ateneu.hotel.usuario.UsuarioDAOHibernate;
 import br.com.ateneu.hotel.usuario.UsuarioRN;
 
 @ManagedBean(name = "usuarioBean")
-@RequestScoped
+@ViewScoped
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
 
-	public String logarSistema(ActionEvent actionEvent) {
-		
-		UsuarioRN usuarioRN = new UsuarioRN();
-		RequestContext context = RequestContext.getCurrentInstance();
-		FacesMessage msg = null;
+	/*
+	 * public String logar() { UsuarioRN usuarioRN = new UsuarioRN();
+	 * System.out.println("Login RN " +
+	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getLogin());
+	 * System.out.println("Senha RN " +
+	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getSenha());
+	 * System.out.println("Login passado " + usuario.getLogin());
+	 * System.out.println("Senha passada " + usuario.getSenha());
+	 * if((usuario.getLogin() ==
+	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getLogin()) &&
+	 * (usuario.getSenha() ==
+	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getSenha())){
+	 * mensagemSucesso("Sucesso", "Usuario logado com sucesso"); return "/sucesso";
+	 * } else { mensagemErro("Erro", "Login ou senha incorretas!"); return ""; } }
+	 * 
+	 * public void mensagemSucesso(String summary,String detail) { FacesMessage
+	 * message = new FacesMessage(FacesMessage.SEVERITY_INFO,summary,detail);
+	 * FacesContext.getCurrentInstance().addMessage(null, message); }
+	 * 
+	 * public void mensagemErro(String summary,String detail) { FacesMessage message
+	 * = new FacesMessage(FacesMessage.SEVERITY_ERROR,summary,detail);
+	 * FacesContext.getCurrentInstance().addMessage(null, message); }
+	 */
 
-		boolean logado = false;
+	public String logar() {
+		UsuarioRN usuarioRN = new UsuarioRN();
+		boolean resultado = usuarioRN.verificarLoginSenha(this.usuario.getLogin(), this.usuario.getSenha());
 		
-		if (usuario.getLogin() == usuarioRN.buscarPorLogin(usuario.getLogin()).getLogin()
-				&& usuario.getSenha() == usuarioRN.buscarPorLogin(usuario.getLogin()).getSenha()) {
-			logado = true;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Seja bem-vindo", "Seja bem-vindo" + usuario.getLogin());
-						
+		if(resultado) {
+			return "/menu-principal";
 		} else {
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro ao realizar login", "Login ou senha incorretos");
-			Usuario usuario = new Usuario();
-			
+			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+	                    "Login inválido!",
+	                    "Por-favor tente novamente!"));
+			 return "/login";
 		}
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		context.addCallbackParam("logado", logado);
-		Usuario usuario = new Usuario();
-		return "";
 	}
-	
-	
-	
-	
+
 	public String cadastroUsuario() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);

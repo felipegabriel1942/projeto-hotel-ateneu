@@ -8,21 +8,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Bem-vindo ao Hotel Ateneu</title>
 	<h:outputStylesheet library="css" name="estilo.css" />
-	<link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
+
 </h:head>
 <h:body>
-	<div class="header">
-		<p>oi</p>
-	</div>
+
 	<p:growl id="grow1" showDetail="true" life="5000" />
 	<h:form id="login">
-		
-			<h:outputLink id="login" value="javascript:void(0)"
-				onclick="PF('autenticacao').show();" title="login">
-			Autenticar
-		</h:outputLink>
+		<p:menubar>
+			<p:menuitem id="login" value="Logar"
+				onclick="PF('autenticacao').show();" styleClass="botaoLogar"/>
+		</p:menubar>
 
-		
+
 
 		<p:dialog id="dialog" header="Login" widgetVar="autenticacao">
 			<h:form>
@@ -36,10 +33,10 @@
 						required="true" label="usuario" />
 
 					<f:facet name="footer">
-						<h:commandButton id="btnLogin" value="Login" update=":grow1"
-							actionListener="#{usuarioBean.logarSistema}">
+						<p:commandButton id="btnLogin" value="Login" update=":grow1"
+							action="#{usuarioBean.logar}">
 
-						</h:commandButton>
+						</p:commandButton>
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
