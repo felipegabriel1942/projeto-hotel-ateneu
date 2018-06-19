@@ -16,42 +16,17 @@ import br.com.ateneu.hotel.usuario.UsuarioRN;
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
-
-	/*
-	 * public String logar() { UsuarioRN usuarioRN = new UsuarioRN();
-	 * System.out.println("Login RN " +
-	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getLogin());
-	 * System.out.println("Senha RN " +
-	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getSenha());
-	 * System.out.println("Login passado " + usuario.getLogin());
-	 * System.out.println("Senha passada " + usuario.getSenha());
-	 * if((usuario.getLogin() ==
-	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getLogin()) &&
-	 * (usuario.getSenha() ==
-	 * usuarioRN.buscarPorLogin(usuario.getLogin()).getSenha())){
-	 * mensagemSucesso("Sucesso", "Usuario logado com sucesso"); return "/sucesso";
-	 * } else { mensagemErro("Erro", "Login ou senha incorretas!"); return ""; } }
-	 * 
-	 * public void mensagemSucesso(String summary,String detail) { FacesMessage
-	 * message = new FacesMessage(FacesMessage.SEVERITY_INFO,summary,detail);
-	 * FacesContext.getCurrentInstance().addMessage(null, message); }
-	 * 
-	 * public void mensagemErro(String summary,String detail) { FacesMessage message
-	 * = new FacesMessage(FacesMessage.SEVERITY_ERROR,summary,detail);
-	 * FacesContext.getCurrentInstance().addMessage(null, message); }
-	 */
-
+	private String mensagem = null;
+	
 	public String logar() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		boolean resultado = usuarioRN.verificarLoginSenha(this.usuario.getLogin(), this.usuario.getSenha());
 		
 		if(resultado) {
-			return "/menu-principal";
+			return "menu-principal-bootstrap?faces-redirect=true";
 		} else {
-			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-	                    "Login inválido!",
-	                    "Por-favor tente novamente!"));
-			 return "/login";
+			
+			 return "login-bootstrap";
 		}
 	}
 
@@ -77,4 +52,13 @@ public class UsuarioBean {
 		this.usuarioDAO = usuarioDAO;
 	}
 
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+	
+	
 }
