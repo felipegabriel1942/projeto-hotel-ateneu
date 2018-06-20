@@ -14,7 +14,7 @@ public class ClienteRN {
 	public void salvar(Cliente cliente) {
 		Integer codigo = cliente.getId();
 		
-		if(codigo == 0 || codigo == null) {
+		if(codigo == null || codigo == 0) {
 			this.clienteDAO.salvar(cliente);
 		} else {
 			this.clienteDAO.atualizar(cliente);

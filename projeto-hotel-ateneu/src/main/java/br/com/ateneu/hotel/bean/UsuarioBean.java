@@ -35,7 +35,6 @@ public class UsuarioBean {
 	public String cadastroUsuario() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
-		System.out.println("Nome" + this.usuario.getLogin());
 		return "menu-principal-bootstrap?faces-redirect=true";
 	}
 

@@ -26,8 +26,8 @@
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			href="#" id="dropClientes" data-toggle="dropdown">Clientes</a>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Cadastro</a> <a
-					class="dropdown-item" href="#">Encerramento de contrato</a>
+				<a class="dropdown-item" href="cadastro-cliente-bootstrap.jsf">Cadastro</a> 
+				<a class="dropdown-item" href="checkout.jsf">Checkout</a>
 			</div></li>
 
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
@@ -45,7 +45,9 @@
 	<!-- INICIO DO CORPO DO FOMULARIO -->
 
 	<h5>Cadastro Cliente</h5>
-	<h:form>
+	<h:form id="cadastro">
+		<h:messages/>
+		<h:inputHidden value="#{clienteBean.cliente.id}"/>
 		<h:panelGrid columns="2" cellpadding="5">
 			<f:facet name="header">
 				<h:outputText value="Dados Pessoais" />
@@ -75,12 +77,13 @@
 			<h:inputText id="email" label="e-mail"
 				value="#{clienteBean.cliente.email}" size="50" maxlength="50"
 				required="true" validatorMessage="email inválido">
-				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+[a-zA-Z0-9\-\_\.]+" />
+				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
 				<h:message for="email" />
 			</h:inputText>
+			<h:commandButton action="#{clienteBean.cadastrarCliente}" value="Salvar"></h:commandButton>
 		</h:panelGrid>
 
-		<h:commandButton action="#{clienteBean.cadastrarCliente}" value="Salvar"></h:commandButton>
+		
 		
 	</h:form>
 
