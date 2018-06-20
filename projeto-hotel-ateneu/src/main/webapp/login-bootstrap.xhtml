@@ -18,20 +18,22 @@
 	<title></title>
 </h:head>
 <h:body>
+
+	<!-- TITULO DA PAGINA -->
+	<nav class="navbar navbar-expand-sm bg-light">
+	<div class="page-header">
+		<h3>Hotel Ateneu</h3>
+	</div>
+
+	<!-- BOTÃO QUE ATIVA A JANELA MODAL -->
+	<button type="button" class="btn btn-info" data-toggle="modal"
+		data-target="#janela">Logar</button>
+	</nav>
+	<h:outputText></h:outputText>
+
+	<div class="container">
 		
-		<!-- TITULO DA PAGINA -->
-		<nav class="navbar navbar-expand-sm bg-light">
-			<div class="page-header">
-				<h3>Hotel Ateneu</h3>
-			</div>
-	
-			<!-- BOTÃO QUE ATIVA A JANELA MODAL -->
-			<button type="button" class="btn btn-info" data-toggle="modal"
-				data-target="#janela">Logar</button>
-		</nav>
 		
-			
-		<div class="container">
 		<!-- JANELA MODAL DO LOGIN -->
 		<h:form class="modal fade" id="janela">
 			<div class="modal-dialog modal-sm">

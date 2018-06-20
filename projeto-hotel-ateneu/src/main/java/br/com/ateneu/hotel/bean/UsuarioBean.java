@@ -12,11 +12,11 @@ import br.com.ateneu.hotel.usuario.UsuarioDAOHibernate;
 import br.com.ateneu.hotel.usuario.UsuarioRN;
 
 @ManagedBean(name = "usuarioBean")
-@ViewScoped
+@SessionScoped
 public class UsuarioBean {
 	private Usuario usuario = new Usuario();
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
-	private String mensagem = null;
+
 	
 	public String logar() {
 		UsuarioRN usuarioRN = new UsuarioRN();
@@ -25,7 +25,9 @@ public class UsuarioBean {
 		if(resultado) {
 			return "menu-principal-bootstrap?faces-redirect=true";
 		} else {
-			
+			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+	                    "Login inválido!",
+	                    "Por-favor tente novamente!"));
 			 return "login-bootstrap";
 		}
 	}
@@ -33,7 +35,8 @@ public class UsuarioBean {
 	public String cadastroUsuario() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
-		return "";
+		System.out.println("Nome" + this.usuario.getLogin());
+		return "menu-principal-bootstrap?faces-redirect=true";
 	}
 
 	public Usuario getUsuario() {
@@ -52,13 +55,4 @@ public class UsuarioBean {
 		this.usuarioDAO = usuarioDAO;
 	}
 
-	public String getMensagem() {
-		return mensagem;
-	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
-	}
-	
-	
 }
