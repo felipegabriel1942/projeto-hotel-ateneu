@@ -27,7 +27,9 @@
 
 
 	<!-- INICIO DO CORPO DO FOMULARIO -->
-	<h5>Cadastro Cliente</h5>
+	<br/>
+	<h5>CHECK-IN</h5>
+	
 	<h:form id="cadastro">
 		<h:messages />
 		<h:inputHidden value="#{clienteBean.cliente.id}" />
@@ -63,10 +65,42 @@
 				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
 				<h:message for="email" />
 			</h:inputText>
-			<h:commandButton action="#{clienteBean.cadastrarCliente}"
-				value="Salvar"></h:commandButton>
+
 		</h:panelGrid>
 
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<f:facet name="header">
+				<h:outputText value="Serviços" />
+			</f:facet>
+
+			<h:outputLabel value="Data de Entrada: " for="entrada" />
+			<h:inputText id="entrada" label="Data de Entrada" value="" size="10"
+				maxlength="10" requiredMessage="Preencha a data de entrada">
+				<f:convertDateTime dataStyle="medium" />
+			</h:inputText>
+
+			<h:outputLabel value="Data de Saída: " for="saida" />
+			<h:inputText id="saida" label="Data de Saída" value="" size="10"
+				maxlength="10" requiredMessage="Preencha a data de saída">
+				<f:convertDateTime dataStyle="medium" />
+			</h:inputText>
+
+			<h:outputLabel value="Tipo de quarto: " for="quarto" />
+			<h:selectOneMenu id="quarto">
+
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Quantidade de quartos: " for="qtdQuartos" />
+			<h:selectOneMenu id="qtdQuartos">
+
+			</h:selectOneMenu>
+
+		</h:panelGrid>
+
+
+		<h:commandButton action="#{clienteBean.cadastrarCliente}"
+			value="Salvar"></h:commandButton>
 
 
 	</h:form>
