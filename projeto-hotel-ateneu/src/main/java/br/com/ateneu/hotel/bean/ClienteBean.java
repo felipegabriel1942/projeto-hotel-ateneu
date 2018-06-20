@@ -17,7 +17,7 @@ public class ClienteBean {
 		ClienteRN clienteRN = new ClienteRN();
 		clienteRN.salvar(this.cliente);
 		this.cliente = new Cliente();		
-		return "cadastro-cliente-bootstrap";
+		return "sucesso-cadastro-cliente";
 	}
 	
 	

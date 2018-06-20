@@ -23,19 +23,19 @@ public class UsuarioBean {
 		boolean resultado = usuarioRN.verificarLoginSenha(this.usuario.getLogin(), this.usuario.getSenha());
 		
 		if(resultado) {
-			return "menu-principal-bootstrap?faces-redirect=true";
+			return "pagina-principal?faces-redirect=true";
 		} else {
 			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 	                    "Login inválido!",
 	                    "Por-favor tente novamente!"));
-			 return "login-bootstrap";
+			 return "index";
 		}
 	}
 
 	public String cadastroUsuario() {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
-		return "menu-principal-bootstrap?faces-redirect=true";
+		return "login?faces-redirect=true";
 	}
 
 	public Usuario getUsuario() {
