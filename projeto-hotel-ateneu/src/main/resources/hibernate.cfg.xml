@@ -9,12 +9,13 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost/bd_hotel_ateneu</property>
 		<property name="connection.username">root</property>	
-		<property name="connection.password"></property>
+		<property name="connection.password">amor1805</property>
 		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
 		<mapping class="br.com.ateneu.hotel.cliente.Cliente"/>
 		<mapping class="br.com.ateneu.hotel.usuario.Usuario"/>
+		<mapping class="br.com.ateneu.hotel.servico.Servico"/>
 	</session-factory>
 	
 </hibernate-configuration>
