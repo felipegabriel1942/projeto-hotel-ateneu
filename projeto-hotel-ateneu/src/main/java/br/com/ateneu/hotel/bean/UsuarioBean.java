@@ -16,6 +16,7 @@ public class UsuarioBean {
 
 	// Atributos
 	private Usuario usuario = new Usuario();
+	private Usuario usuarioLogado;
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
 	private String confirmarSenha;
 	private String nomeDoUsuario;
@@ -28,9 +29,8 @@ public class UsuarioBean {
 		boolean resultado = usuarioRN.verificarLoginSenha(this.usuario.getLogin(), this.usuario.getSenha());
 
 		if (resultado) {
-			setNomeDoUsuario(this.usuario.getNomeCompleto());
-			System.out.println("Nome do usuario: " + nomeDoUsuario);
-			this.usuario = new Usuario();
+			/*usuarioLogado = this.usuario;
+			this.usuario = new Usuario();*/
 			return "pagina-principal?faces-redirect=true";
 
 		} else {
@@ -118,4 +118,14 @@ public class UsuarioBean {
 		this.nomeDoUsuario = nomeDoUsuario;
 	}
 
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
+	
+	
 }
