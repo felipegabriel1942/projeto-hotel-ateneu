@@ -17,6 +17,7 @@ public class Usuario implements Serializable{
 	@org.hibernate.annotations.NaturalId
 	private String login;
 	private String senha;
+	private String nomeCompleto;
 	
 	//Getters e Setters
 	public Integer getId() {
@@ -42,16 +43,23 @@ public class Usuario implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
 	
 	//Hash code e equals
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((nomeCompleto == null) ? 0 : nomeCompleto.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
@@ -75,6 +83,11 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!login.equals(other.login))
 			return false;
+		if (nomeCompleto == null) {
+			if (other.nomeCompleto != null)
+				return false;
+		} else if (!nomeCompleto.equals(other.nomeCompleto))
+			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
@@ -82,6 +95,9 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 	
 }

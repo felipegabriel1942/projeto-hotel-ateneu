@@ -1,5 +1,7 @@
 package br.com.ateneu.hotel.usuario;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -22,7 +24,8 @@ public class UsuarioRN {
 			this.usuarioDAO.atualizar(usuario);
 		}
 	}
-
+	
+	//Buscar um usuario por login
 	public Usuario buscarPorLogin(String login) {
 		if (this.usuarioDAO.buscarPorLogin(login) == null) {
 			System.out.println(this.usuarioDAO.buscarPorLogin(login));
@@ -31,29 +34,31 @@ public class UsuarioRN {
 			return this.usuarioDAO.buscarPorLogin(login);
 		}
 	}
-
+	
+	
+	
+	//Metodo para verificar se a senhar digitada ao logar esta cadastrada no banco de dados
 	public boolean verificarLoginSenha(String login, String senha) {
 		boolean encontrado = false;
 
 		if (buscarPorLogin(login) != null) {
-			if (buscarPorLogin(login).getLogin().equals(login)
-					&& buscarPorLogin(login).getSenha().equals(senha)) {
-				System.out.println(login);
-				System.out.println(senha);
-				System.out.println(buscarPorLogin(login).getLogin());
-				System.out.println(buscarPorLogin(login).getSenha());
+			if (buscarPorLogin(login).getLogin().equals(login) && buscarPorLogin(login).getSenha().equals(senha)) {
+				
 				return encontrado = true;
 
 			} else {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção!", "Password errado!"));
-				
+
 				return encontrado = false;
 			}
 
 		}
 		return encontrado;
 
+	}
+	
+	//Metodo para listar todos os usuarios
+	public List<Usuario> listar(){
+		return this.usuarioDAO.listar();
 	}
 
 }

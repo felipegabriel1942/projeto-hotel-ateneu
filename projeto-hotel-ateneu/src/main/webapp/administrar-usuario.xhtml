@@ -23,11 +23,38 @@
 	<!-- MENU DE NAVEGAÇÃO -->
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
-	
-	<h3>Bem vindo, <h:outputText value="#{usuarioBean.nomeDoUsuario}"/></h3>
-	
-	
-	<!-- Optional JavaScript -->
+
+	<h5>Administrar Usuarios</h5>
+
+	<h:form id="cadastroUsuario">
+		<h:messages />
+	<h:dataTable value="#{usuarioBean.lista}" var="usuario" rules="all" cellpadding="5" style="align: center;">
+		<f:facet name="header">Listagem de Usuários</f:facet>
+		<f:facet name="footer"><h:column></h:column></f:facet>
+		
+		<h:column>
+			<f:facet name="header">Código</f:facet>
+			#{usuario.id}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Login</f:facet>
+			#{usuario.login}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Nome Completo</f:facet>
+			#{usuario.nomeCompleto}
+		</h:column>
+		
+				
+	</h:dataTable>
+
+	</h:form>
+
+
+
+	<!-- Optional JavaScript --> 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
