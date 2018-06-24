@@ -18,9 +18,8 @@ public class Servico implements Serializable{
 	private String tipo;
 	private float valor;
 	private Integer quantidadeTotal;
-	private Integer quantidadeDisponivel;
 	private String nomeServico; 
-	private Integer maxOcupacao;
+	
 	
 	//Getters e Setters
 	public Integer getId() {
@@ -47,25 +46,13 @@ public class Servico implements Serializable{
 	public void setQuantidadeTotal(Integer quantidadeTotal) {
 		this.quantidadeTotal = quantidadeTotal;
 	}
-	public Integer getQuantidadeDisponivel() {
-		return quantidadeDisponivel;
-	}
-	public void setQuantidadeDisponivel(Integer quantidadeDisponivel) {
-		this.quantidadeDisponivel = quantidadeDisponivel;
-	}
+
 	public String getNomeServico() {
 		return nomeServico;
 	}
 	public void setNomeServico(String nomeServico) {
 		this.nomeServico = nomeServico;
 	}
-	public Integer getMaxOcupacao() {
-		return maxOcupacao;
-	}
-	public void setMaxOcupacao(Integer maxOcupacao) {
-		this.maxOcupacao = maxOcupacao;
-	}
-	
 	
 	//Hash code e equals
 	@Override
@@ -73,9 +60,7 @@ public class Servico implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((maxOcupacao == null) ? 0 : maxOcupacao.hashCode());
 		result = prime * result + ((nomeServico == null) ? 0 : nomeServico.hashCode());
-		result = prime * result + ((quantidadeDisponivel == null) ? 0 : quantidadeDisponivel.hashCode());
 		result = prime * result + ((quantidadeTotal == null) ? 0 : quantidadeTotal.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		result = prime * result + Float.floatToIntBits(valor);
@@ -95,20 +80,10 @@ public class Servico implements Serializable{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (maxOcupacao == null) {
-			if (other.maxOcupacao != null)
-				return false;
-		} else if (!maxOcupacao.equals(other.maxOcupacao))
-			return false;
 		if (nomeServico == null) {
 			if (other.nomeServico != null)
 				return false;
 		} else if (!nomeServico.equals(other.nomeServico))
-			return false;
-		if (quantidadeDisponivel == null) {
-			if (other.quantidadeDisponivel != null)
-				return false;
-		} else if (!quantidadeDisponivel.equals(other.quantidadeDisponivel))
 			return false;
 		if (quantidadeTotal == null) {
 			if (other.quantidadeTotal != null)
@@ -124,6 +99,8 @@ public class Servico implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	

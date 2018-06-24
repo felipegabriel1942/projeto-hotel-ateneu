@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous" />
+
+	<title></title>
+</h:head>
+<h:body>
+
+	<!-- MENU DE NAVEGAÇÃO -->
+	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
+	<!--  FIM DO MENU DE NAVEGAÇÃO -->
+
+	<h:form id="cadastroServico">
+		<h:messages />
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<f:facet name="header">
+				<h:outputText value="Cadastro de Serviços" />
+			</f:facet>
+
+			<h:outputLabel value="Tipo do serviço: " for="tipoServico" />
+			<h:selectOneMenu id="tipoServico" value="#{servicoBean.servico.tipo}">
+				<f:selectItem itemValue="Quarto" itemLabel="Quarto" />
+				<f:selectItem itemValue="Babysitter" itemLabel="Babysitter" />
+				<f:selectItem itemValue="Carro" itemLabel="Carro" />
+				<f:selectItem itemValue="Alimentação" itemLabel="Alimentação" />
+			</h:selectOneMenu>
+
+
+			<h:outputLabel value="Nome do serviço: " for="nomeServico" />
+			<h:inputText id="nomeServico"
+				value="#{servicoBean.servico.nomeServico}" size="50" required="true"
+				requiredMessage="Informe o nome do serviço" />
+
+			<h:outputLabel value="Valor do serviço: " for="valorServico" />
+			<h:inputText id="valorServico" value="#{servicoBean.servico.valor}"
+				size="10" required="true"
+				requiredMessage="Informe o valor do serviço" />
+
+			<h:outputLabel value="Quantidade total do serviço: " for="qtdServico" />
+			<h:inputText id="qtdServico"
+				value="#{servicoBean.servico.quantidadeTotal}" size="10"
+				required="true"
+				requiredMessage="Informe a quantidade total do serviço" />
+
+
+			<h:commandButton action="#{servicoBean.cadastrarServico}"
+				value="Salvar" />
+
+
+		</h:panelGrid>
+	</h:form>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+</h:body>
+</html>

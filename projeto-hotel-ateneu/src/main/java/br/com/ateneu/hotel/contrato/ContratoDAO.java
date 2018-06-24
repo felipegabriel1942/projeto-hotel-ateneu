@@ -7,6 +7,6 @@ public interface ContratoDAO {
 	public void salvar(Contrato contrato);
 	public void excluir(Contrato contrato);
 	public void atualizar(Contrato contrato);
-	public Contrato pesquisarPorCpf(String cpf);
+	public Contrato pesquisarPorContrato(Integer contrato);
 	public List<Contrato> contrato(Contrato contrato);
 }

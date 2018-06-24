@@ -44,7 +44,7 @@ public class ClienteDAOHibernate implements ClienteDAO{
 	//Metodo para trazer informaçõs de um cliente do banco de dados
 	@Override
 	public Cliente pesquisarPorCpf(String cpf) {
-		String hql = "select c from Cliente c where u.cpf = :cpf";
+		String hql = "select c from Cliente c where c.cpf = :cpf";
 		Query consulta = this.session.createQuery(hql);
 		consulta.setString("cpf", cpf);
 		return (Cliente) consulta.uniqueResult();

@@ -48,7 +48,7 @@ public class ServicoDAOHibernate implements ServicoDAO{
 	//Metodo para listar todos os servicos do banco de dados
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Servico> listar(Servico servico) {
+	public List<Servico> listar() {
 		return this.session.createCriteria(Servico.class).list();
 	}
 
