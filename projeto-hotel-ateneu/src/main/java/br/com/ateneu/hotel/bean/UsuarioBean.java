@@ -16,7 +16,7 @@ public class UsuarioBean {
 
 	// Atributos
 	private Usuario usuario = new Usuario();
-	private Usuario usuarioLogado;
+	private Usuario usuarioLogado = new Usuario();
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
 	private String confirmarSenha;
 	private String nomeDoUsuario;
@@ -29,8 +29,8 @@ public class UsuarioBean {
 		boolean resultado = usuarioRN.verificarLoginSenha(this.usuario.getLogin(), this.usuario.getSenha());
 
 		if (resultado) {
-			/*usuarioLogado = this.usuario;
-			this.usuario = new Usuario();*/
+			usuarioLogado = usuarioRN.buscarPorLogin(this.usuario.getLogin());
+			this.usuario = new Usuario();
 			return "pagina-principal?faces-redirect=true";
 
 		} else {

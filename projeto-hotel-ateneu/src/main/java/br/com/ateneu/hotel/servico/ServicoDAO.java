@@ -8,5 +8,6 @@ public interface ServicoDAO {
 	public void excluir(Servico servico);
 	public void atualizar(Servico servico);
 	public Servico pesquisarPorCodigo(Integer id);
+	public Servico pesquisarPorNomeServico(String nome);
 	public List<Servico> listar();
 }

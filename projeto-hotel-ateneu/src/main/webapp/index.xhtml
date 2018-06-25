@@ -27,19 +27,20 @@
 	</div>
 
 	<!-- BOTÃO QUE ATIVA A JANELA MODAL -->
-	<button type="button" class="btn btn-info" data-toggle="modal"
-		data-target="#janela">Logar</button>
+	<button type="button" class="btn btn-info"
+		data-toggle="modal" data-target="#janela" id="botaoLogin">Logar</button>
 	</nav>
-	<h:outputText></h:outputText>
+	
 
 	<div class="container">
-	
-	<!-- MENSAGEM DE ERRO AO LOGAR -->
-	<h:messages class="alert alert-danger" id="mensagemErroLogin"/>
-		
-		
+
+		<!-- MENSAGEM DE ERRO AO LOGAR -->
+		<h:messages class="alert alert-danger" id="mensagemErroLogin" />
+
+
 		<!-- JANELA MODAL DO LOGIN -->
 		<h:form class="modal fade" id="janela">
+			<h:inputHidden value="#{usuarioBean.usuario.id}" />
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 

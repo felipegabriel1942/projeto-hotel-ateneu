@@ -27,9 +27,9 @@
 
 
 	<!-- INICIO DO CORPO DO FOMULARIO -->
-	<br/>
+	<br />
 	<h5>CHECK-IN</h5>
-	
+
 	<h:form id="cadastro">
 		<h:messages />
 		<h:inputHidden value="#{clienteBean.cliente.id}" />
@@ -40,7 +40,7 @@
 
 			<h:outputLabel value="Nome: " for="nome" />
 			<h:inputText id="nome" value="#{clienteBean.cliente.nome}" size="50"
-				required="true" />
+				required="true" requiredMessage="Por favor, informe seu nome." />
 
 			<h:outputLabel value="CPF: " for="cpf" />
 			<h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" size="15"
@@ -75,30 +75,53 @@
 			</f:facet>
 
 			<h:outputLabel value="Data de Entrada: " for="entrada" />
-			<h:inputText id="entrada" label="Data de Entrada" value="#{clienteBean.contrato.dataInicial}" size="10"
-				maxlength="10" requiredMessage="Preencha a data de entrada">
+			<h:inputText id="entrada" label="Data de Entrada"
+				value="#{clienteBean.contrato.dataInicial}" size="10" maxlength="10"
+				requiredMessage="Preencha a data de entrada">
 				<f:convertDateTime dataStyle="medium" />
 			</h:inputText>
 
 			<h:outputLabel value="Data de Saída: " for="saida" />
-			<h:inputText id="saida" label="Data de Saída" value="#{clienteBean.contrato.dataFinal}" size="10"
-				maxlength="10" requiredMessage="Preencha a data de saída">
+			<h:inputText id="saida" label="Data de Saída"
+				value="#{clienteBean.contrato.dataFinal}" size="10" maxlength="10"
+				requiredMessage="Preencha a data de saída">
 				<f:convertDateTime dataStyle="medium" />
 			</h:inputText>
-			
+
 			<h:outputLabel value="Tipo de quarto: " for="quarto" />
-			<h:selectOneMenu id="quarto" value="">
-				<f:selectItems value="#{servicoBean.listaQuarto}"/>
+			<h:selectOneMenu id="quarto" value="#{clienteBean.operacaoQuarto.nomeServico}">
+				<f:selectItems value="#{servicoBean.listaQuarto}" />
 			</h:selectOneMenu>
 
+
 			<h:outputLabel value="Quantidade de pessoas: " for="qtdPessoas" />
-			<h:inputText id="qtdPessoas" value="#{clienteBean.contrato.qtdPessoas}" size="5"/>
+			<h:inputText id="qtdPessoas"
+				value="#{clienteBean.contrato.qtdPessoas}" size="5" />
 
 		</h:panelGrid>
-
+		
+		<h:panelGrid columns="2" cellpadding="5">
+			<f:facet name="header">
+				<h:outputText value="Serviços Adicionais" />
+			</f:facet>
+			
+			
+			<h:outputLabel value="Babysitter: " for="babysitter" />
+			<h:selectOneMenu id="babysitter" value="#{clienteBean.operacaoBabysitter.nomeServico}">
+				<f:selectItems value="#{servicoBean.listaBabysitter}" />
+			</h:selectOneMenu>
+			
+			
+			<h:outputLabel value="Carro: " for="carro" />
+			<h:selectOneMenu id="carro" value="#{clienteBean.operacaoCarro.nomeServico}">
+				<f:selectItems value="#{servicoBean.listaCarro}" />
+			</h:selectOneMenu>
+				
+		</h:panelGrid>
+	
 
 		<h:commandButton action="#{clienteBean.cadastrarCliente}"
-			value="Salvar"></h:commandButton>
+			value="Salvar" class="btn btn-primary"></h:commandButton>
 
 
 	</h:form>

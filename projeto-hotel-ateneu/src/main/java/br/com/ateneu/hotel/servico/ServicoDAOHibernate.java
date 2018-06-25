@@ -52,4 +52,13 @@ public class ServicoDAOHibernate implements ServicoDAO{
 		return this.session.createCriteria(Servico.class).list();
 	}
 
+
+	@Override
+	public Servico pesquisarPorNomeServico(String nome) {
+		String hql = "select s from Servico s where s.nomeServico = :nomeServico";
+		Query consulta = this.session.createQuery(hql);
+		consulta.setString("nomeServico", nome);
+		return (Servico) consulta.uniqueResult();
+	}
+
 }

@@ -19,4 +19,12 @@ public class ContratoRN {
 			this.contratoDAO.atualizar(contrato);
 		}
 	}
+	
+	public Contrato buscarContratoPorCodigo(Integer codigo) {
+		if(this.contratoDAO.pesquisarPorContrato(codigo) == null) {
+			return null;
+		} else {
+			return this.contratoDAO.pesquisarPorContrato(codigo);
+		}
+	}
 }

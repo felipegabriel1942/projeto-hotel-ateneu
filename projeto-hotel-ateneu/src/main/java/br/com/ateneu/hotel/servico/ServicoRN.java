@@ -30,4 +30,8 @@ public class ServicoRN {
 		this.servicoDAO.excluir(servico);
 	}
 	
+	public Servico buscarServicoPorNome(String nome) {
+		return this.servicoDAO.pesquisarPorNomeServico(nome);
+	}
+	
 }

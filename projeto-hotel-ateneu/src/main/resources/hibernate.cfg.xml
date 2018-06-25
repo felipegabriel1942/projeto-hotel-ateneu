@@ -16,6 +16,8 @@
 		<mapping class="br.com.ateneu.hotel.cliente.Cliente"/>
 		<mapping class="br.com.ateneu.hotel.usuario.Usuario"/>
 		<mapping class="br.com.ateneu.hotel.servico.Servico"/>
+		<mapping class="br.com.ateneu.hotel.contrato.Contrato"/>
+		<mapping class="br.com.ateneu.hotel.operacao.Operacao"/>
 	</session-factory>
 	
 </hibernate-configuration>

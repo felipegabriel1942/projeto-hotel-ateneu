@@ -4,6 +4,8 @@ import br.com.ateneu.hotel.cliente.ClienteDAO;
 import br.com.ateneu.hotel.cliente.ClienteDAOHibernate;
 import br.com.ateneu.hotel.contrato.ContratoDAO;
 import br.com.ateneu.hotel.contrato.ContratoDAOHibernate;
+import br.com.ateneu.hotel.operacao.OperacaoDAO;
+import br.com.ateneu.hotel.operacao.OperacaoDAOHibernate;
 import br.com.ateneu.hotel.servico.ServicoDAO;
 import br.com.ateneu.hotel.servico.ServicoDAOHibernate;
 import br.com.ateneu.hotel.usuario.UsuarioDAO;
@@ -33,5 +35,11 @@ public class DAOFactory {
 		ContratoDAOHibernate contratoDAO = new ContratoDAOHibernate();
 		contratoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
 		return contratoDAO;
+	}
+	
+	public static OperacaoDAO criarOperacaoDAO() {
+		OperacaoDAOHibernate operacaoDAO = new OperacaoDAOHibernate();
+		operacaoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return operacaoDAO;
 	}
 }

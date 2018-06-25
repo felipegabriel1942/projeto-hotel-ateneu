@@ -16,6 +16,8 @@ public class ServicoBean {
 	private Servico servico = new Servico();
 	private List<Servico> lista = null;
 	private List<SelectItem> listaQuarto = popularNomeQuarto(getLista());
+	private List<SelectItem> listaBabysitter = popularListaBabySitter(getLista());
+	private List<SelectItem> listaCarro = popularListaCarro(getLista());
 
 	public String cadastrarServico() {
 		ServicoRN servicoRN = new ServicoRN();
@@ -37,6 +39,7 @@ public class ServicoBean {
 	public static List<SelectItem> popularNomeQuarto(List<Servico> lista) {
 
 		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
 		for (Servico obj : lista) {
 			if (obj.getTipo().equals("Quarto")) {
 				s.add(new SelectItem(obj.getNomeServico()));
@@ -45,7 +48,37 @@ public class ServicoBean {
 
 		return s;
 	}
+	
+	public static List<SelectItem> popularListaBabySitter(List<Servico> lista) {
 
+		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
+		for (Servico obj : lista) {
+			if (obj.getTipo().equals("Babysitter")) {
+				s.add(new SelectItem(obj.getNomeServico()));
+			}
+		}
+
+		return s;
+	}
+	
+	public static List<SelectItem> popularListaCarro(List<Servico> lista) {
+
+		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
+		for (Servico obj : lista) {
+			if (obj.getTipo().equals("Carro")) {
+				s.add(new SelectItem(obj.getNomeServico()));
+			}
+		}
+
+		return s;
+	}
+	
+	
+	
+	
+	
 	public String editarServico() {
 		ServicoRN servicoRN = new ServicoRN();
 		servicoRN.cadastrarServico(this.servico);
@@ -79,5 +112,23 @@ public class ServicoBean {
 	public void setLista(List<Servico> lista) {
 		this.lista = lista;
 	}
+
+	public List<SelectItem> getListaBabysitter() {
+		return listaBabysitter;
+	}
+
+	public void setListaBabysitter(List<SelectItem> listaBabysitter) {
+		this.listaBabysitter = listaBabysitter;
+	}
+
+	public List<SelectItem> getListaCarro() {
+		return listaCarro;
+	}
+
+	public void setListaCarro(List<SelectItem> listaCarro) {
+		this.listaCarro = listaCarro;
+	}
+	
+	
 
 }

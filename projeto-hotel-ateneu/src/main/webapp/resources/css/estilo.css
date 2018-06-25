@@ -7,3 +7,7 @@ body {
 .areaDoCliente{
 	margin: 100px; 
 }
+
+#botaoLogin {
+	float: right;
+}

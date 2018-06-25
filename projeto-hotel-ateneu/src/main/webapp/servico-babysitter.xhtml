@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
@@ -25,29 +24,38 @@
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
+	<h:form id="babysitter">
+	
+			<h:panelGrid columns="2" cellpadding="5">
+				<f:facet name="header">
+					<h:outputText value="Serviço de Baby Sitter" />
+				</f:facet>
+	
+				<h:outputLabel value="Idade: " for="idadecrianca" />
+				<h:selectOneMenu id="idadecrianca" value="#">
+					<f:selectItem itemValue="2" itemLabel="2" />
+					<f:selectItem itemValue="3" itemLabel="3" />
+					<f:selectItem itemValue="4" itemLabel="4" />
+					<f:selectItem itemValue="5" itemLabel="5" />
+					<f:selectItem itemValue="6" itemLabel="6" />
+					<f:selectItem itemValue="7" itemLabel="7" />
+					<f:selectItem itemValue="8" itemLabel="8" />
+					<f:selectItem itemValue="9" itemLabel="9" />
+				</h:selectOneMenu>
 
-	<!-- INICIO DO CORPO DO FOMULARIO -->
-	<br />
-	<h5>CHECKOUT</h5>
+				<h:outputLabel value="Hora do Serviço: " for="horaServico" />
+					<input type="time" name="horaInicioServico" required="true"
+					requiredMessage="Informe a hora inicial do serviço"/> às
+					<input type="time" name="horaTerminoServico"/>
 
-	<h:form id="pesquisarCliente">
-		<h:messages />
-		<h:inputHidden value="#{clienteBean.cliente.id}" />
-		<h:panelGrid columns="3" cellpadding="5">
-			<h:outputLabel value="Pesquisar contrato: " for="contrato" />
-			<h:inputText id="contrato" value="#{clienteBean.contrato.numeroContrato}" />
-			<h:commandButton action="#{clienteBean.buscarCliente()}"
-				value="Pesquisar" class="btn btn-primary"></h:commandButton>
+				<h:commandButton action="#" value="Salvar" class="btn btn-primary" />
+	
 		</h:panelGrid>
-
-
-
-
-
 	</h:form>
 
-	<!-- FIM DO CORPO DO FOMULARIO -->
-	<!-- Optional JavaScript -->
+
+
+	<!-- Optional JavaScript --> 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
