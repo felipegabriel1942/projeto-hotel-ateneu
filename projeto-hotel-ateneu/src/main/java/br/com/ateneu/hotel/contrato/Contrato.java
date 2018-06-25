@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import br.com.ateneu.hotel.cliente.Cliente;
+
 @Entity
+@Table(name = "contrato")
 public class Contrato implements Serializable{
 
 	private static final long serialVersionUID = 5718146817431351664L;
@@ -13,14 +16,22 @@ public class Contrato implements Serializable{
 	//Atributos
 	@Id
 	@GeneratedValue
+	@Column(name = "cod_contrato")
 	private Integer numeroContrato;
+	
 	private String nomeCompleto;
 	private String cpf;
 	private Date dataInicial;
 	private Date dataFinal;
 	private String periodo;
+	private Integer qtdPessoas;
 	private Integer statusContrato;
 	private String numCartaoCredito;
+	
+	@ManyToOne
+	@JoinColumn(name = "cod_cliente")
+	private Cliente cliente;
+	
 	
 	//Getters e Setters
 	public Integer getNumeroContrato() {
@@ -72,11 +83,28 @@ public class Contrato implements Serializable{
 		this.numCartaoCredito = numCartaoCredito;
 	}
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	
+		
+	public Integer getQtdPessoas() {
+		return qtdPessoas;
+	}
+	public void setQtdPessoas(Integer qtdPessoas) {
+		this.qtdPessoas = qtdPessoas;
+	}
+	
+	
 	//Equals e Hash Code
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((dataFinal == null) ? 0 : dataFinal.hashCode());
 		result = prime * result + ((dataInicial == null) ? 0 : dataInicial.hashCode());
@@ -84,6 +112,7 @@ public class Contrato implements Serializable{
 		result = prime * result + ((numCartaoCredito == null) ? 0 : numCartaoCredito.hashCode());
 		result = prime * result + ((numeroContrato == null) ? 0 : numeroContrato.hashCode());
 		result = prime * result + ((periodo == null) ? 0 : periodo.hashCode());
+		result = prime * result + ((qtdPessoas == null) ? 0 : qtdPessoas.hashCode());
 		result = prime * result + ((statusContrato == null) ? 0 : statusContrato.hashCode());
 		return result;
 	}
@@ -96,6 +125,11 @@ public class Contrato implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Contrato other = (Contrato) obj;
+		if (cliente == null) {
+			if (other.cliente != null)
+				return false;
+		} else if (!cliente.equals(other.cliente))
+			return false;
 		if (cpf == null) {
 			if (other.cpf != null)
 				return false;
@@ -131,6 +165,11 @@ public class Contrato implements Serializable{
 				return false;
 		} else if (!periodo.equals(other.periodo))
 			return false;
+		if (qtdPessoas == null) {
+			if (other.qtdPessoas != null)
+				return false;
+		} else if (!qtdPessoas.equals(other.qtdPessoas))
+			return false;
 		if (statusContrato == null) {
 			if (other.statusContrato != null)
 				return false;
@@ -138,6 +177,12 @@ public class Contrato implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

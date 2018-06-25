@@ -75,26 +75,24 @@
 			</f:facet>
 
 			<h:outputLabel value="Data de Entrada: " for="entrada" />
-			<h:inputText id="entrada" label="Data de Entrada" value="" size="10"
+			<h:inputText id="entrada" label="Data de Entrada" value="#{clienteBean.contrato.dataInicial}" size="10"
 				maxlength="10" requiredMessage="Preencha a data de entrada">
 				<f:convertDateTime dataStyle="medium" />
 			</h:inputText>
 
 			<h:outputLabel value="Data de Saída: " for="saida" />
-			<h:inputText id="saida" label="Data de Saída" value="" size="10"
+			<h:inputText id="saida" label="Data de Saída" value="#{clienteBean.contrato.dataFinal}" size="10"
 				maxlength="10" requiredMessage="Preencha a data de saída">
 				<f:convertDateTime dataStyle="medium" />
 			</h:inputText>
-
+			
 			<h:outputLabel value="Tipo de quarto: " for="quarto" />
-			<h:selectOneMenu id="quarto">
-
+			<h:selectOneMenu id="quarto" value="">
+				<f:selectItems value="#{servicoBean.listaQuarto}"/>
 			</h:selectOneMenu>
 
 			<h:outputLabel value="Quantidade de pessoas: " for="qtdPessoas" />
-			<h:selectOneMenu id="qtdPessoas">
-
-			</h:selectOneMenu>
+			<h:inputText id="qtdPessoas" value="#{clienteBean.contrato.qtdPessoas}" size="5"/>
 
 		</h:panelGrid>
 

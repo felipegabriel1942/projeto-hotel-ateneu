@@ -2,12 +2,12 @@ package br.com.ateneu.hotel.cliente;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
 
 @Entity
+@Table(name = "cliente")
 public class Cliente implements Serializable{
 
 	private static final long serialVersionUID = 6027309593450162997L;
@@ -17,12 +17,14 @@ public class Cliente implements Serializable{
 	
 	@Id
 	@GeneratedValue
+	@Column(name = "cod_cliente")
 	private Integer id;
 	private String nome;
 	
 	@org.hibernate.annotations.NaturalId //Nesse ponto foi adotado transformar o cpf em chave natural, já que é uma informação que
 	//não se repete e pode ser utilizada como chave primaria, porém tem a vantagem de por ser uma informação com significado no 
 	//no mundo real é passivel de erro na hora do cadastro, se fosse a chave primaria da tabela não poderia ser editada.
+	
 	private String cpf;	
 	private Date nascimento;
 	private String email;
