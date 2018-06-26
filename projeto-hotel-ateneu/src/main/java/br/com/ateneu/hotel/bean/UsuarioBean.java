@@ -72,6 +72,11 @@ public class UsuarioBean {
 
 	}
 	
+	public String deslogar() {
+		usuarioLogado = new Usuario();
+		return "index?faces-redirect=true";
+	}
+	
 	/**
 	 * Metodo utilizado para trazer a lista de todos os usuarios
 	 * 

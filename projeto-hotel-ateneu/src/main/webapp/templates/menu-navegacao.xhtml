@@ -3,10 +3,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	
-	<nav class="navbar navbar-expand-sm bg-light">
+	<nav class="navbar navbar-expand-sm bg-primary border ">
 		<ul class="navbar-nav">
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="dropClientes"
+			<li class="nav-item dropdown "><a
+				class="nav-link dropdown-toggle text-light" href="#" id="dropClientes"
 				data-toggle="dropdown">Clientes</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="check-in.jsf">Check-in</a>
@@ -14,7 +14,7 @@
 				</div></li>
 
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="dropClientes"
+				class="nav-link dropdown-toggle text-light" href="#" id="dropClientes"
 				data-toggle="dropdown">Serviços</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="servico-babysitter.jsf">Babysitter</a> 
@@ -22,7 +22,7 @@
 				</div></li>
 				
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="dropAdministrativo"
+				class="nav-link dropdown-toggle text-light" href="#" id="dropAdministrativo"
 				data-toggle="dropdown">Administrativo</a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="cadastro-usuario.jsf">Cadastrar Usuário</a>
@@ -34,5 +34,9 @@
 			
 			
 		</ul>
+		<h:form id="deslogar" styleClass="ml-auto">
+			<h:commandButton action="#{usuarioBean.deslogar}" styleClass="btn btn-info btn-light" value="Sair"/>
+		</h:form>
+		
 	</nav>
 </ui:composition>

@@ -17,7 +17,7 @@
 		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 		crossorigin="anonymous" />
 
-	<title></title>
+	<title>Hotel Ateneu</title>
 </h:head>
 <h:body>
 
@@ -31,9 +31,12 @@
 	<h5>CHECK-IN</h5>
 
 	<h:form id="cadastro">
+	
 		<h:messages />
 		<h:inputHidden value="#{clienteBean.cliente.id}" />
-		<h:panelGrid columns="2" cellpadding="5">
+		
+		<h:panelGrid columns="2" cellpadding="5" >
+			
 			<f:facet name="header">
 				<h:outputText value="Dados Pessoais" />
 			</f:facet>
@@ -65,7 +68,7 @@
 				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
 				<h:message for="email" />
 			</h:inputText>
-
+			
 		</h:panelGrid>
 
 
