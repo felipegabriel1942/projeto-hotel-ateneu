@@ -2,45 +2,49 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	
-	<nav class="navbar navbar-expand-sm bg-primary border ">
+
+	<nav class="navbar navbar-expand-sm bg-primary">
 		<ul class="navbar-nav">
 			<li class="nav-item dropdown "><a
-				class="nav-link dropdown-toggle text-light" href="#" id="dropClientes"
-				data-toggle="dropdown">Clientes</a>
+				class="nav-link dropdown-toggle text-light" href="#"
+				id="dropClientes" data-toggle="dropdown"><i
+					class="fa fa-address-card-o" style="padding-right: 5px;"></i>Clientes</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="check-in.jsf">Check-in</a>
-					<a class="dropdown-item" href="checkout.jsf">Checkout</a>
+					<a class="dropdown-item" href="check-in.jsf">Check-in</a> <a
+						class="dropdown-item" href="checkout.jsf">Checkout</a>
 				</div></li>
 
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle text-light" href="#" id="dropClientes"
-				data-toggle="dropdown">Serviços</a>
+				class="nav-link dropdown-toggle text-light" href="#"
+				id="dropClientes" data-toggle="dropdown"><i
+					class="fa fa-cart-arrow-down" style="padding-right: 5px;"></i>Serviços</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="servico-babysitter.jsf">Babysitter</a> 
-					<a class="dropdown-item" href="servico-aluguel-carro.jsf">Aluguel de carro</a>
+					<a class="dropdown-item" href="servico-babysitter.jsf">Babysitter</a>
+					<a class="dropdown-item" href="servico-aluguel-carro.jsf">Aluguel
+						de carro</a>
 				</div></li>
-				
+
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle text-light" href="#" id="dropAdministrativo"
-				data-toggle="dropdown">Administrativo</a>
+				class="nav-link dropdown-toggle text-light" href="#"
+				id="dropAdministrativo" data-toggle="dropdown"><i
+					class="fa fa-gears" style="padding-right: 5px;"></i>Administrativo</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="cadastro-usuario.jsf">Cadastrar Usuário</a>
-					<a class="dropdown-item" href="administrar-usuario.jsf">Administrar Usuários</a>
+					<a class="dropdown-item" href="cadastro-usuario.jsf">Cadastrar
+						Usuário</a> <a class="dropdown-item" href="administrar-usuario.jsf">Administrar
+						Usuários</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="cadastro-servico.jsf">Cadastrar Serviço</a>
-					<a class="dropdown-item" href="administrar-servico.jsf">Administrar Serviços</a>
+					<a class="dropdown-item" href="cadastro-servico.jsf">Cadastrar
+						Serviço</a> <a class="dropdown-item" href="administrar-servico.jsf">Administrar
+						Serviços</a>
 				</div></li>
-			
-			
+
+
 		</ul>
 		<h:form id="deslogar" styleClass="ml-auto">
-			<h:commandButton action="#{usuarioBean.deslogar}" styleClass="btn btn-info btn-light" value="Sair"/>
+			<h:commandButton action="#{usuarioBean.deslogar}"
+				styleClass="btn btn-outline-light btn-light" value="Sair" />
 		</h:form>
-		
+
 	</nav>
-	<div class="usuarioLogado">
-		<b>Usuario Logado:</b>
-		<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
-	</div>
+
 </ui:composition>

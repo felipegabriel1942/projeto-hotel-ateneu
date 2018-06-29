@@ -33,10 +33,10 @@ public class ContratoDAOHibernate implements ContratoDAO{
 	}
 
 	@Override
-	public Contrato pesquisarPorContrato(Integer contrato) {
-		String hql = "select c from Contrato c where c.contrato = :contrato";
+	public Contrato pesquisarPorContrato(Integer numeroContrato) {
+		String hql = "select c from Contrato c where c.numeroContrato = :numeroContrato";
 		Query consulta = this.session.createQuery(hql);
-		consulta.setInteger("contrato", contrato);
+		consulta.setInteger("numeroContrato", numeroContrato);
 		return (Contrato) consulta.uniqueResult();
 	}
 

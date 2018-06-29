@@ -3,19 +3,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		
-	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
+
+
+	<!-- Referência externa para icones -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 	
+	<script>
+		$.noConflict();
+		jQuery(document).ready(function ($) {
+		    $("#calendario").datepicker();
+		});
+	</script>	
+
+	<!-- Bootstrap CSS -->
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
+	
+		
 	<title>Hotel Ateneu</title>
 </h:head>
 <h:body>
@@ -30,109 +46,123 @@
 	<h5>CHECK-IN</h5>
 
 	<h:form id="cadastro">
-	
+
 		<h:messages />
 		<h:inputHidden value="#{clienteBean.cliente.id}" />
-		
-		<h:panelGrid columns="2" cellpadding="5" >
-			
-			<f:facet name="header">
-				<h:outputText value="Dados Pessoais" />
-			</f:facet>
 
-			<h:outputLabel value="Nome: " for="nome" />
-			<h:inputText id="nome" value="#{clienteBean.cliente.nome}" size="50"
-				required="true" requiredMessage="Por favor, informe seu nome." />
+		<div class="checkin-dados-clientes">
+			<h:panelGrid columns="2" cellpadding="5">
 
-			<h:outputLabel value="CPF: " for="cpf" />
-			<h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" size="15"
-				maxlength="11" />
-
-			<h:outputLabel value="Data de Nascimento: " for="nascimento" />
-			<h:inputText id="nascimento" label="Data Nascimento"
-				value="#{clienteBean.cliente.nascimento}" size="10" maxlength="10"
-				requiredMessage="Preencha a data de nascimento">
-				<f:convertDateTime dataStyle="medium" />
-			</h:inputText>
-
-			<h:outputLabel value="Celular: " for="celular" />
-			<h:inputText id="celular" value="#{clienteBean.cliente.celular}"
-				size="15" requiredMessage="Preencha o celular do cliente"
-				maxlength="11" />
-
-			<h:outputLabel value="E-Mail: " for="email" />
-			<h:inputText id="email" label="e-mail"
-				value="#{clienteBean.cliente.email}" size="50" maxlength="50"
-				required="true" validatorMessage="email inválido">
-				<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
-				<h:message for="email" />
-			</h:inputText>
-			
-		</h:panelGrid>
+				<f:facet name="header">
+					<h:outputText value="Dados Pessoais" />
+				</f:facet>
 
 
-		<h:panelGrid columns="2" cellpadding="5">
-			<f:facet name="header">
-				<h:outputText value="Serviços" />
-			</f:facet>
+				<h:outputLabel value="Nome: " for="nome" />
+				<h:inputText id="nome" value="#{clienteBean.cliente.nome}" size="50"
+					required="true" requiredMessage="Por favor, informe seu nome."
+					styleClass="campo-formulario" />
 
-			<h:outputLabel value="Data de Entrada: " for="entrada" />
-			<h:inputText id="entrada" label="Data de Entrada"
-				value="#{clienteBean.contrato.dataInicial}" size="10" maxlength="10"
-				requiredMessage="Preencha a data de entrada">
-				<f:convertDateTime dataStyle="medium" />
-			</h:inputText>
-
-			<h:outputLabel value="Data de Saída: " for="saida" />
-			<h:inputText id="saida" label="Data de Saída"
-				value="#{clienteBean.contrato.dataFinal}" size="10" maxlength="10"
-				requiredMessage="Preencha a data de saída">
-				<f:convertDateTime dataStyle="medium" />
-			</h:inputText>
-
-			<h:outputLabel value="Tipo de quarto: " for="quarto" />
-			<h:selectOneMenu id="quarto" value="#{clienteBean.operacaoQuarto.nomeServico}">
-				<f:selectItems value="#{servicoBean.listaQuarto}" />
-			</h:selectOneMenu>
-
-
-			<h:outputLabel value="Quantidade de pessoas: " for="qtdPessoas" />
-			<h:inputText id="qtdPessoas"
-				value="#{clienteBean.contrato.qtdPessoas}" size="5" />
-
-		</h:panelGrid>
-		
-		<h:panelGrid columns="2" cellpadding="5">
-			<f:facet name="header">
-				<h:outputText value="Serviços Adicionais" />
-			</f:facet>
-			
-			
-			<h:outputLabel value="Babysitter: " for="babysitter" />
-			<h:selectOneMenu id="babysitter" value="#{clienteBean.operacaoBabysitter.nomeServico}">
-				<f:selectItems value="#{servicoBean.listaBabysitter}" />
-			</h:selectOneMenu>
-			
-			
-			<h:outputLabel value="Carro: " for="carro" />
-			<h:selectOneMenu id="carro" value="#{clienteBean.operacaoCarro.nomeServico}">
-				<f:selectItems value="#{servicoBean.listaCarro}" />
-			</h:selectOneMenu>
+				<h:outputLabel value="CPF: " for="cpf" />
+				<h:inputText id="cpf" value="#{clienteBean.cliente.cpf}" size="15"
+					maxlength="11" styleClass="campo-formulario" />
 				
-		</h:panelGrid>
-	
+				
+				<h:outputLabel value="Data de Nascimento: " for="nascimento" />
+				<h:inputText id="nascimento" label="Data Nascimento"
+					value="#{clienteBean.cliente.nascimento}" size="10" maxlength="10"
+					requiredMessage="Preencha a data de nascimento"
+					styleClass="campo-formulario">
+					
+				</h:inputText>
+
+				<h:outputLabel value="Celular: " for="celular" />
+				<h:inputText id="celular" value="#{clienteBean.cliente.celular}"
+					size="15" requiredMessage="Preencha o celular do cliente"
+					maxlength="11" styleClass="campo-formulario" />
+
+				<h:outputLabel value="E-Mail: " for="email" />
+				<h:inputText id="email" label="e-mail"
+					value="#{clienteBean.cliente.email}" size="50" maxlength="50"
+					required="true" validatorMessage="email inválido"
+					styleClass="campo-formulario">
+					<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+					<h:message for="email" />
+				</h:inputText>
+
+			</h:panelGrid>
+		</div>
+
+
+		<div class="checkin-dados-clientes" style="margin-top: 10px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				<f:facet name="header">
+					<h:outputText value="Serviços" />
+				</f:facet>
+
+				<h:outputLabel value="Data de Entrada: " for="entrada" />
+				<h:inputText id="entrada" label="Data de Entrada"
+					value="#{clienteBean.contrato.dataInicial}" size="10"
+					maxlength="10" requiredMessage="Preencha a data de entrada" styleClass="datepicker">
+					<f:convertDateTime dataStyle="medium" />
+				</h:inputText>
+
+				<h:outputLabel value="Data de Saída: " for="saida" />
+				<h:inputText id="saida" label="Data de Saída"
+					value="#{clienteBean.contrato.dataFinal}" size="10" maxlength="10"
+					requiredMessage="Preencha a data de saída">
+					<f:convertDateTime dataStyle="medium" />
+				</h:inputText>
+
+				<h:outputLabel value="Tipo de quarto: " for="quarto" />
+				<h:selectOneMenu id="quarto"
+					value="#{clienteBean.operacaoQuarto.nomeServico}">
+					<f:selectItems value="#{servicoBean.listaQuarto}" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel value="Quantidade de pessoas: " for="qtdPessoas" />
+				<h:inputText id="qtdPessoas"
+					value="#{clienteBean.contrato.qtdPessoas}" size="5" />
+
+			</h:panelGrid>
+		</div>
+
+
+		<div class="checkin-dados-clientes" style="margin-top: 10px; margin-bottom: 10px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				<f:facet name="header">
+					<h:outputText value="Serviços Adicionais" />
+				</f:facet>
+
+
+				<h:outputLabel value="Babysitter: " for="babysitter" />
+				<h:selectOneMenu id="babysitter"
+					value="#{clienteBean.operacaoBabysitter.nomeServico}">
+					<f:selectItems value="#{servicoBean.listaBabysitter}" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel value="Carro: " for="carro" />
+				<h:selectOneMenu id="carro"
+					value="#{clienteBean.operacaoCarro.nomeServico}">
+					<f:selectItems value="#{servicoBean.listaCarro}" />
+				</h:selectOneMenu>
+
+			</h:panelGrid>
+		</div>
 
 		<h:commandButton action="#{clienteBean.cadastrarCliente}"
 			value="Salvar" class="btn btn-primary"></h:commandButton>
 
 
 	</h:form>
-	
+
 	<!-- RODAPÉ DA PÁGINA -->
 	<ui:include src="/templates/rodape.xhtml"></ui:include>
 	<!--  FIM DO RODAPÉ DA PÁGINA -->
-	
-	
+
+
 	<!-- FIM DO CORPO DO FOMULARIO -->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

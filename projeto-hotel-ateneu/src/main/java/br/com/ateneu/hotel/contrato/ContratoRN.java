@@ -27,4 +27,8 @@ public class ContratoRN {
 			return this.contratoDAO.pesquisarPorContrato(codigo);
 		}
 	}
+	
+	public void atualizar(Contrato contrato) {
+		this.contratoDAO.atualizar(contrato);
+	}
 }

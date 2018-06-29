@@ -10,24 +10,28 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		
-		
+
+	<!-- Referência externa para icones -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
 	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
-	
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
+
 	<title>Hotel Ateneu</title>
 </h:head>
 <h:body>
 
 	<!-- TITULO DA PAGINA -->
 	<nav class="navbar navbar-expand-sm bg-primary ">
-	<div class="page-header text-light">
-		<h3>Hotel Ateneu</h3>
-	</div>
+		<a class="navbar-brand" href="#" style="color:white;">
+			<h:graphicImage value="resources/imagens/logo-hotel.png" width="35" height="35" class="d-inline-block align-top"/>
+			Hotel Ateneu
+		</a>
 
 	<!-- BOTÃO QUE ATIVA A JANELA MODAL -->
-	<button type="button" class="btn btn-info ml-auto btn-light"
+	<button type="button" class="btn btn-outline-light ml-auto btn-light"
 		data-toggle="modal" data-target="#janela" id="botaoLogin">Logar</button>
 	</nav>
 
@@ -46,7 +50,8 @@
 
 					<!-- CABEÇALHO DA JANELA DE LOGIN -->
 					<div class="modal-header">
-						<h4 class="modal-title">Efetuar login</h4>
+						
+						<h4 class="modal-title"><i class="fa fa-expeditedssl" style="padding-right: 5px;"></i>Efetuar login</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span area-hidden="true">&times;</span>
@@ -56,7 +61,7 @@
 					<!-- ENTRADA DE DADOS PARA O LOGIN -->
 					<div class="modal-body">
 						<div class="form-group">
-							<h:outputLabel value="Nome: " for="nome" />
+							<h:outputLabel value="Login: " for="nome" />
 							<h:inputText id="nome" label="Nome"
 								value="#{usuarioBean.usuario.login}" />
 						</div>
@@ -78,8 +83,8 @@
 
 		</h:form>
 	</div>
-	
-	
+
+
 	<!-- RODAPÉ DA PÁGINA -->
 	<ui:include src="/templates/rodape.xhtml"></ui:include>
 	<!--  FIM DO RODAPÉ DA PÁGINA -->

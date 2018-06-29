@@ -18,10 +18,19 @@ body {
 	float: right;
 }
 
-.usuarioLogado {
+
+.areaUsuario{
+	width: 100%;
+	height: 40px;
+	background: #e6f9ff;
+}
+
+.areaUsuario #usuarioLogado {
+	
 	float:right;
 }
 
+/* -- Rodapé -- */
 .rodape {
 	position: absolute;
 	bottom: 0;
@@ -38,4 +47,43 @@ body {
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	color: white;
+}
+
+/*-- Pagina de check-in --*/
+.checkin-dados-clientes{
+	background: white;
+	border-radius: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 5px;
+}
+
+
+/*-- Classes auxiliares--*/
+
+.campo-formulario {
+	border-radius: 3px;
+	border: 1px solid #000000;
+	
+	
+	}
+.campo-formulario:hover {
+	border-radius: 3px;
+	border: 0px solid #000000;
+	box-shadow: 0px 0px 3px 3px #6495ed;	
+}
+
+
+/*-- Mensagens JSF --*/
+.alert {
+	width: 400px;
+	text-align: center;
+}
+
+.aviso {
+	background-color: yellow;
+}
+
+.info {
+	background-color: blue;
 }
