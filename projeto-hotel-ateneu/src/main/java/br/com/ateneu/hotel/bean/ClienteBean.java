@@ -86,12 +86,13 @@ public class ClienteBean {
 		
 		//Verificação da situação do contrato pesquisado ou se está cadastrado
 		if(contratoCheckout == null) {
-			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Contrato não existe.","");
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Contrato não existe","");
 			FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
 			
 		} else if(contratoCheckout.getStatusContrato() == 0) {
-			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN,"Contrato está inativo, por favor procure seu responsável.","");
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN,"Contrato está inativo","");
 			FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
+			this.contratoCheckout = null;
 			
 		} else {
 			operacoesCliente = operacaoRN.listarOperacoesUsuario(contratoCheckout);
@@ -101,7 +102,7 @@ public class ClienteBean {
 				this.setTotalPagar(this.getTotalPagar() + operacoesCliente.get(i).getValorOperacao());
 				System.out.println("Valor a pagar " + i + " " + this.getTotalPagar());
 			}
-			
+						
 		}
 		
 		return "checkout";
@@ -110,7 +111,6 @@ public class ClienteBean {
 			
 	
 	public String realizarCheckout() {
-		FacesContext context = FacesContext.getCurrentInstance();
 		ContratoRN contratoRN = new ContratoRN();
 		
 		contratoCheckout = contratoRN.buscarContratoPorCodigo(this.contrato.getNumeroContrato());
@@ -118,10 +118,11 @@ public class ClienteBean {
 		
 		contratoRN.atualizar(contratoCheckout);
 		
-		FacesMessage facesMessage = new FacesMessage("Checkout realizado com sucesso");
-		context.addMessage(null, facesMessage);
+		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Checkout efetuado com sucesso","");
+		FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
 		
-		contratoCheckout = null;
+		this.contratoCheckout = null;
+		this.contrato = null;
 		return "checkout";
 		
 	}

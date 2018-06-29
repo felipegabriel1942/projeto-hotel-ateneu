@@ -37,62 +37,71 @@
 
 		<!-- MENSAGENS DE VALIDAÇÃO -->
 		<h:messages id="mensagens" errorClass="alert alert-danger "
-			warnClass="aviso" infoClass="info" />
+			warnClass="alert alert-warning" infoClass="alert alert-primary" />
 
 
 		<!-- INICIO DO FORMULARIO -->
-		<h:inputHidden value="#{clienteBean.contrato.numeroContrato}" />
-		<h:panelGrid columns="3" cellpadding="5">
-			<h:outputLabel value="Pesquisar contrato: " for="contrato" />
-			<h:inputText id="contrato"
-				value="#{clienteBean.contrato.numeroContrato}" />
-			<h:commandButton action="#{clienteBean.buscarCliente}"
-				value="Pesquisar" class="btn btn-primary"></h:commandButton>
-		</h:panelGrid>
+		<div class="area-formulario">
+			<h:inputHidden value="#{clienteBean.contrato.numeroContrato}" />
+			<h:panelGrid columns="3" cellpadding="5">
+				<h:outputLabel value="Pesquisar contrato: " for="contrato" />
+				<h:inputText id="contrato"
+					value="#{clienteBean.contrato.numeroContrato}" />
+				<h:commandButton action="#{clienteBean.buscarCliente}"
+					value="Pesquisar" class="btn btn-primary"></h:commandButton>
+			</h:panelGrid>
 
-		<h:panelGrid columns="2" cellpadding="5" border="1">
-			<h:outputLabel value="Nome cliente: " for="cliente" />
-			<h:outputText id="cliente"
-				value="#{clienteBean.contratoCheckout.cliente.nome}" />
+			<h:panelGroup
+				rendered="#{clienteBean.contrato.qtdPessoas gt 0}">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Nome cliente: " for="cliente" />
+					<h:outputText id="cliente"
+						value="#{clienteBean.contratoCheckout.cliente.nome}" />
 
-			<h:outputLabel value="CPF: " for="cpf" />
-			<h:outputText id="cpf" value="#{clienteBean.contratoCheckout.cpf}" />
-		</h:panelGrid>
+					<h:outputLabel value="CPF: " for="cpf" />
+					<h:outputText id="cpf" value="#{clienteBean.contratoCheckout.cpf}" />
+				</h:panelGrid>
 
 
-		<h:dataTable value="#{clienteBean.operacoesCliente}" var="operacao"
-			cellspacing="5" cellpadding="5" border="1">
+				<h:dataTable value="#{clienteBean.operacoesCliente}" var="operacao"
+					cellspacing="5" cellpadding="5" border="1">
 
-			<h:column>
-				<f:facet name="header">Tipo Serviço</f:facet>
+					<h:column>
+						<f:facet name="header">Tipo Serviço</f:facet>
 					#{operacao.tipoServico}
 			</h:column>
 
-			<h:column>
-				<f:facet name="header">Nome Serviço</f:facet>
+					<h:column>
+						<f:facet name="header">Nome Serviço</f:facet>
 					#{operacao.nomeServico}
 			</h:column>
 
-			<h:column>
-				<f:facet name="header">Data Serviço</f:facet>
+					<h:column>
+						<f:facet name="header">Data Serviço</f:facet>
 					#{operacao.dataOperacao}
 			</h:column>
 
-			<h:column>
-				<f:facet name="header">Valor Serviço</f:facet>
-					#{operacao.valorOperacao}
-			</h:column>
+					<h:column>
+						<f:facet name="header">Valor Serviço</f:facet>
+						<h:outputText value="#{operacao.valorOperacao}">
+							<f:convertNumber currencySymbol="R$" type="currency" />
+						</h:outputText>
+					</h:column>
 
-		</h:dataTable>
+				</h:dataTable>
 
 
-		<h:panelGrid columns="2" cellpadding="5">
-			<h:outputLabel value="Total à Pagar: " for="totalPagamento" />
-			<h:outputText id="totalPagamento" value="#{clienteBean.totalPagar}" />
-		</h:panelGrid>
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Total à Pagar: " for="totalPagamento" />
+					<h:outputText id="totalPagamento" value="#{clienteBean.totalPagar}">
+						<f:convertNumber currencySymbol="R$" type="currency" />
+					</h:outputText>
+				</h:panelGrid>
+			</h:panelGroup>
+		</div>
 
 		<h:commandButton action="#{clienteBean.realizarCheckout}"
-			value="Checkout" />
+			value="Checkout"/>
 
 
 	</h:form>
