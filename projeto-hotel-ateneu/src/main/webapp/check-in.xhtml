@@ -148,7 +148,11 @@
 					value="#{clienteBean.operacaoCarro.nomeServico}">
 					<f:selectItems value="#{servicoBean.listaCarro}" />
 				</h:selectOneMenu>
-
+				
+				<h:selectManyCheckbox >
+					<f:selectItem itemValue="1" itemLabel="Tanque Cheio"/>
+					<f:selectItem itemValue="2" itemLabel="Seguro"/>
+				</h:selectManyCheckbox>
 			</h:panelGrid>
 		</div>
 
