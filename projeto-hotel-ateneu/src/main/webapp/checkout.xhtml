@@ -23,16 +23,27 @@
 	<title></title>
 </h:head>
 <h:body>
-
+	<div class="conteudo">
 	<!-- MENU DE NAVEGAÇÃO -->
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
 
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-arrow-circle-o-left"
+					style="padding-right: 5px; color: red;"></i>Checkout
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
+	
 	<!-- INICIO DO CORPO DO FOMULARIO -->
-	<br />
-	<h5>CHECKOUT</h5>
-
 	<h:form id="pesquisarCliente">
 
 		<!-- MENSAGENS DE VALIDAÇÃO -->
@@ -51,8 +62,7 @@
 					value="Pesquisar" class="btn btn-primary"></h:commandButton>
 			</h:panelGrid>
 
-			<h:panelGroup
-				rendered="#{clienteBean.contrato.qtdPessoas gt 0}">
+			<h:panelGroup>
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputLabel value="Nome cliente: " for="cliente" />
 					<h:outputText id="cliente"
@@ -101,12 +111,19 @@
 		</div>
 
 		<h:commandButton action="#{clienteBean.realizarCheckout}"
-			value="Checkout"/>
+			value="Checkout" styleClass="btn btn-primary"/>
 
 
 	</h:form>
-
 	<!-- FIM DO CORPO DO FOMULARIO -->
+	</div>
+	
+	<!-- RODAPÉ DA PÁGINA -->
+	<ui:include src="/templates/rodape.xhtml"></ui:include>
+	<!--  FIM DO RODAPÉ DA PÁGINA -->
+	
+	
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

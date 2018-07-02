@@ -26,8 +26,12 @@ public class ClienteBean {
 	private Operacao operacaoBabysitter = new Operacao();
 	private Operacao operacaoCarro = new Operacao();
 	private Contrato contratoCheckout = new Contrato();
+	private Contrato buscarContrato = new Contrato();
 	List<Operacao> operacoesCliente = new ArrayList<Operacao>();
 	private float totalPagar;
+	private List<String> opcoesCarroAlugado = new ArrayList<String>();
+	public float valorAdicionalCarro;
+	
 
 	public String cadastrarCliente() {
 
@@ -40,7 +44,6 @@ public class ClienteBean {
 		this.contrato.setCpf(this.cliente.getCpf());
 		this.contrato.setStatusContrato(1);
 		this.contrato.setPeriodo("Janeiro");
-		this.contrato.setNumCartaoCredito("5146646464");
 		this.contrato.setCliente(cliente);
 
 		// Settar as informações de operação do quarto
@@ -60,9 +63,11 @@ public class ClienteBean {
 
 		// Settar as informações de operação do carro
 		this.operacaoCarro.setTipoServico(servicoRN.buscarServicoPorNome(operacaoCarro.getNomeServico()).getTipo());
-		this.operacaoCarro.setValorOperacao(servicoRN.buscarServicoPorNome(operacaoCarro.getNomeServico()).getValor());
+		this.operacaoCarro.setValorOperacao(servicoRN.buscarServicoPorNome(operacaoCarro.getNomeServico()).getValor() + valorAdicionalCarro);
 		this.operacaoCarro.setDataOperacao(new Date(System.currentTimeMillis()));
 		this.operacaoCarro.setContrato(contrato);
+		
+		
 
 		// salvar as informações referentes ao cliente, contrato e serviços solicitados
 		contratoRN.salvar(this.contrato);
@@ -108,7 +113,37 @@ public class ClienteBean {
 		return "checkout";
 	}
 	
+	//Metodo para buscar e editar um contrato
+	public String buscarEditarContrato() {
+		ContratoRN contratoRN = new ContratoRN();
+		OperacaoRN operacaoRN = new OperacaoRN();
+		
+		
+		buscarContrato = contratoRN.buscarContratoPorCodigo(this.contrato.getNumeroContrato());
+		
+		//Verificação da situação do contrato pesquisado ou se está cadastrado
+		if(buscarContrato == null) {
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR,"Contrato não existe","");
+			FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
 			
+		} else if(buscarContrato.getStatusContrato() == 0) {
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN,"Contrato está inativo","");
+			FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
+			this.buscarContrato = null;
+			
+		} else {
+			operacoesCliente = operacaoRN.listarOperacoesUsuario(buscarContrato);
+			
+			//Calculo do valor do total do cliente deve pagar
+			for (int i = 0; i < operacoesCliente.size(); i++) {
+				this.setTotalPagar(this.getTotalPagar() + operacoesCliente.get(i).getValorOperacao());
+				System.out.println("Valor a pagar " + i + " " + this.getTotalPagar());
+			}
+						
+		}
+		
+		return "pesquisar-contrato";
+	}		
 	
 	public String realizarCheckout() {
 		ContratoRN contratoRN = new ContratoRN();
@@ -192,4 +227,23 @@ public class ClienteBean {
 		this.totalPagar = totalPagar;
 	}
 
+	public List<String> getOpcoesCarroAlugado() {
+		return opcoesCarroAlugado;
+	}
+
+	public void setOpcoesCarroAlugado(List<String> opcoesCarroAlugado) {
+		this.opcoesCarroAlugado = opcoesCarroAlugado;
+	}
+
+	public Contrato getBuscarContrato() {
+		return buscarContrato;
+	}
+
+	public void setBuscarContrato(Contrato buscarContrato) {
+		this.buscarContrato = buscarContrato;
+	}
+
+	
+	
+	
 }

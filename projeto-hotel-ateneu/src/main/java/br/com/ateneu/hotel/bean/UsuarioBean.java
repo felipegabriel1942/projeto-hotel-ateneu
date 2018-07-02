@@ -17,6 +17,7 @@ public class UsuarioBean {
 	// Atributos
 	private Usuario usuario = new Usuario();
 	private Usuario usuarioLogado = new Usuario();
+	private Usuario usuarioEdicao = new Usuario();
 	private UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
 	private String confirmarSenha;
 	private String nomeDoUsuario;
@@ -77,6 +78,13 @@ public class UsuarioBean {
 		return "index?faces-redirect=true";
 	}
 	
+	public String editarUsuario() {
+		
+		UsuarioRN usuarioRN = new UsuarioRN();
+		this.usuarioEdicao = usuarioRN.buscarPorLogin(usuario.getLogin());
+		return "editar-usuario";
+	}
+	
 	/**
 	 * Metodo utilizado para trazer a lista de todos os usuarios
 	 * 
@@ -129,6 +137,14 @@ public class UsuarioBean {
 
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
+	}
+
+	public Usuario getUsuarioEdicao() {
+		return usuarioEdicao;
+	}
+
+	public void setUsuarioEdicao(Usuario usuarioEdicao) {
+		this.usuarioEdicao = usuarioEdicao;
 	}
 
 	
