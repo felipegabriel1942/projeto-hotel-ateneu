@@ -11,17 +11,29 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
+
 	<!-- Referência externa para icones -->
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
+	<link rel="stylesheet"
+		href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
 
+	<script>
+		$.noConflict();
+		jQuery(document).ready(function($) {
+			$("#calendario").datepicker();
+		});
+	</script>
 
 	<!-- Bootstrap CSS -->
 	<h:outputStylesheet library="css" name="/bootstrap.css" />
 	<h:outputStylesheet library="css" name="/estilo.css" />
 
-	<title></title>
+
+	<title>Hotel Ateneu</title>
 </h:head>
 <h:body>
 	<div class="conteudo">
@@ -33,8 +45,8 @@
 		<div class="areaUsuario">
 			<div id="titulo-pagina">
 				<h5>
-					<i class="fa fa-wrench"
-						style="padding-right: 5px; color: green;"></i>Editar Usuário
+					<i class="fa fa-arrow-circle-o-right"
+						style="padding-right: 5px; color: green;"></i>Check-in
 				</h5>
 			</div>
 			<div id="usuarioLogado">
@@ -43,44 +55,21 @@
 			</div>
 		</div>
 
-		<h:form id="editarUsuario">
-			<h:messages />
-			<div class="container">
-				<div class="area-formulario">
-					<h:panelGrid columns="2" cellpadding="5">
-						<f:facet name="header">
-							<h:outputText value="Editar Usuario" />
-						</f:facet>
-
-						<h:outputLabel value="Nome: " for="nome" />
-						<h:inputText id="nome" value="#{usuarioBean.usuario.nomeCompleto}"
-							size="50" required="true"
-							requiredMessage="Informe o nome completo do usuario"
-							styleClass="campo-formulario" />
-
-						<h:outputLabel value="Senha: " for="senha" />
-						<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}"
-							size="25" required="true" requiredMessage="Informe uma senha"
-							styleClass="campo-formulario" />
-
-						<h:outputLabel value="Confime a senha: " for="senhaConfirmar" />
-						<h:inputSecret id="senhaConfirmar"
-							value="#{usuarioBean.confirmarSenha}" size="25" required="true"
-							requiredMessage="Informe a senha de confirmação"
-							styleClass="campo-formulario" />
-					</h:panelGrid>
-				</div>
-				<h:commandButton action="#{usuarioBean.atualizarUsuario}"
-					value="Editar" styleClass="btn btn-primary"
-					style="margin-top:10px; margin-left: 10px;" />
-
-			</div>
-
+		<!-- INICIO DO CORPO DO FOMULARIO -->
+		
+		<h:form>
+			<h:messages infoClass="alert alert-primary"/>
+			<h:panelGrid columns="2">
+			<h:outputLabel value="Relátorio de usuarios:" for="relUsuarios"/>
+			<h:commandButton value="usuarios" actionListener="#{usuarioBean.imprimirUsuarios}"/>
+			
+			</h:panelGrid>
 		</h:form>
 	</div>
+	
 
 
-
+	<!-- FIM DO CORPO DO FOMULARIO -->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

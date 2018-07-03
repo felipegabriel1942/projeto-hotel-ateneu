@@ -1,5 +1,6 @@
 package br.com.ateneu.hotel.bean;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import br.com.ateneu.hotel.contrato.ContratoRN;
 import br.com.ateneu.hotel.operacao.Operacao;
 import br.com.ateneu.hotel.operacao.OperacaoRN;
 import br.com.ateneu.hotel.servico.ServicoRN;
+import br.com.ateneu.hotel.util.RNUtil;
 
 @ManagedBean(name = "clienteBean")
 @RequestScoped
@@ -27,25 +29,39 @@ public class ClienteBean {
 	private Operacao operacaoCarro = new Operacao();
 	private Contrato contratoCheckout = new Contrato();
 	private Contrato buscarContrato = new Contrato();
+	private Contrato contratoRestaurante = new Contrato();
 	List<Operacao> operacoesCliente = new ArrayList<Operacao>();
+	private List<Operacao> operacoesRestauranteTemporario = new ArrayList<Operacao>();
 	private float totalPagar;
 	private List<String> opcoesCarroAlugado = new ArrayList<String>();
 	public float valorAdicionalCarro;
+	private String dataNascimento;
+	private String dataInicio;
+	private String dataFinal;
+	private Integer contratoPesquisado;
+	
 	
 
-	public String cadastrarCliente() {
+	public String cadastrarCliente() throws ParseException {
 
 		ClienteRN clienteRN = new ClienteRN();
 		ContratoRN contratoRN = new ContratoRN();
 		OperacaoRN operacaoRN = new OperacaoRN();
 		ServicoRN servicoRN = new ServicoRN();
-
+		RNUtil rnUtil = new RNUtil();
+		
+		//Setando informações diversas iniciais
 		this.contrato.setNomeCompleto(this.cliente.getNome());
 		this.contrato.setCpf(this.cliente.getCpf());
 		this.contrato.setStatusContrato(1);
-		this.contrato.setPeriodo("Janeiro");
 		this.contrato.setCliente(cliente);
-
+		this.contrato.setPeriodo(rnUtil.definirPeriodo(this.dataInicio));
+		
+		//Conversao de datas
+		this.cliente.setNascimento(rnUtil.stringParaData(this.dataNascimento));
+		this.contrato.setDataInicial(rnUtil.stringParaData(this.dataInicio));
+		this.contrato.setDataFinal(rnUtil.stringParaData(this.dataFinal));
+		
 		// Settar as informações de operação do quarto
 		this.operacaoQuarto.setTipoServico(servicoRN.buscarServicoPorNome(operacaoQuarto.getNomeServico()).getTipo());
 		this.operacaoQuarto
@@ -78,8 +94,11 @@ public class ClienteBean {
 
 		this.cliente = new Cliente();
 		this.contrato = new Contrato();
-
-		return "sucesso-cadastro-cliente";
+		
+		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Checkin efetuado com sucesso","");
+		FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
+		
+		return "check-in";
 	}
 	
 	//Preenche a pagina com os dados do cliente
@@ -159,6 +178,25 @@ public class ClienteBean {
 		this.contratoCheckout = null;
 		this.contrato = null;
 		return "checkout";
+		
+	}
+	
+	public String pesquisarContrato() {
+		ContratoRN contratoRN = new ContratoRN();
+		this.contratoRestaurante = contratoRN.buscarContratoPorCodigo(this.contratoPesquisado);
+		System.out.println(this.contratoRestaurante.getCliente().getNome());
+		
+		return null;
+	}
+	
+	public String verificarPedido() {
+		ContratoRN contratoRN = new ContratoRN();
+		return "servico-alimentacao";
+			
+	}
+	
+	public String fecharPedido() {
+		return dataFinal;
 		
 	}
 	
@@ -243,7 +281,53 @@ public class ClienteBean {
 		this.buscarContrato = buscarContrato;
 	}
 
-	
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(String dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public String getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(String dataFinal) {
+		this.dataFinal = dataFinal;
+	}
+
+	public Integer getContratoPesquisado() {
+		return contratoPesquisado;
+	}
+
+	public void setContratoPesquisado(Integer contratoPesquisado) {
+		this.contratoPesquisado = contratoPesquisado;
+	}
+
+	public Contrato getContratoRestaurante() {
+		return contratoRestaurante;
+	}
+
+	public void setContratoRestaurante(Contrato contratoRestaurante) {
+		this.contratoRestaurante = contratoRestaurante;
+	}
+
+	public List<Operacao> getOperacoesRestauranteTemporario() {
+		return operacoesRestauranteTemporario;
+	}
+
+	public void setOperacoesRestauranteTemporario(List<Operacao> operacoesRestauranteTemporario) {
+		this.operacoesRestauranteTemporario = operacoesRestauranteTemporario;
+	}
 	
 	
 }

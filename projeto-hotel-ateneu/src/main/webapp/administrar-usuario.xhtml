@@ -42,15 +42,13 @@
 			</div>
 		</div>
 
-		<h:form id="cadastroUsuario">
+		<h:form id="cadastroUsuario" styleClass="container ">
 			<h:messages />
 
-			<div class="container area-formulario">
+			<div class="area-formulario">
 				<h:dataTable value="#{usuarioBean.lista}" var="usuario" border="1"
 					cellpadding="5" style="align: center;">
-					<f:facet name="header">Listagem de Usuários</f:facet>
-
-
+					
 					<h:column>
 						<f:facet name="header">Código</f:facet>
 			#{usuario.id}
@@ -67,8 +65,21 @@
 		</h:column>
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
-			<h:commandLink action="#{usuarioBean.editarUsuario}"><i class="fa fa-wrench"></i></h:commandLink>			
-		</h:column>
+						<h:commandLink action="#{usuarioBean.editarUsuario}">
+							<i class="fa fa-wrench"></i>
+							<f:setPropertyActionListener value="#{usuario}"
+								target="#{usuarioBean.usuario}"/>
+						</h:commandLink>
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						<h:commandLink action="#{usuarioBean.excluirUsuario}">
+							<i class="fa fa-close" style="color: red;"></i>
+							<f:setPropertyActionListener value="#{usuario}"
+								target="#{usuarioBean.usuario}"/>
+						</h:commandLink>
+					</h:column>
 
 				</h:dataTable>
 			</div>

@@ -48,6 +48,14 @@
 			<version>4.3.4.Final</version>
 		</dependency>
 
+		<!-- Jasper Reports -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.6.0</version>
+		</dependency>
+
+
 		<!-- MySQL -->
 		<!-- O Jar vai ficar dentro da pasta Lib do tomcat e não no repositorio 
 			do maven -->

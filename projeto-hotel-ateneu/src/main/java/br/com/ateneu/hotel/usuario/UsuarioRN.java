@@ -56,6 +56,14 @@ public class UsuarioRN {
 
 	}
 	
+	public void atualizarUsuario (Usuario usuario) {
+		usuarioDAO.atualizar(usuario);
+	}
+	
+	public void excluirUsuario(Usuario usuario) {
+		usuarioDAO.excluir(usuario);
+	}
+	
 	//Metodo para listar todos os usuarios
 	public List<Usuario> listar(){
 		return this.usuarioDAO.listar();

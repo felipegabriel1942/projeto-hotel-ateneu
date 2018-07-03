@@ -18,6 +18,7 @@ public class ServicoBean {
 	private List<SelectItem> listaQuarto = popularNomeQuarto(getLista());
 	private List<SelectItem> listaBabysitter = popularListaBabySitter(getLista());
 	private List<SelectItem> listaCarro = popularListaCarro(getLista());
+	
 
 	public String cadastrarServico() {
 		ServicoRN servicoRN = new ServicoRN();

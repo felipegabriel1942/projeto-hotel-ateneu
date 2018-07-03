@@ -58,8 +58,8 @@
 		<!-- INICIO DO CORPO DO FOMULARIO -->
 		<div class="container">
 			<h:form id="cadastro">
-
-				<h:messages />
+			
+				<h:messages infoClass="alert alert-primary"/>
 				<h:inputHidden value="#{clienteBean.cliente.id}" />
 
 
@@ -89,10 +89,10 @@
 
 						<h:outputLabel value="Data de Nascimento: " for="nascimento" />
 						<h:inputText id="nascimento" label="Data Nascimento"
-							value="#{clienteBean.cliente.nascimento}" size="10"
+							value="#{clienteBean.dataNascimento}" size="10"
 							maxlength="10" requiredMessage="Preencha a data de nascimento"
 							styleClass="campo-formulario">
-							<f:convertDateTime dataStyle="medium" />
+							
 						</h:inputText>
 
 						<h:outputLabel value="Celular: " for="celular" />
@@ -121,18 +121,17 @@
 
 						<h:outputLabel value="Data de Entrada: " for="entrada" />
 						<h:inputText id="entrada" label="Data de Entrada"
-							value="#{clienteBean.contrato.dataInicial}" size="10"
+							value="#{clienteBean.dataInicio}" size="10"
 							maxlength="10" requiredMessage="Preencha a data de entrada"
 							styleClass="campo-formulario">
-							<f:convertDateTime dataStyle="medium" />
+							
 						</h:inputText>
 
 						<h:outputLabel value="Data de Saída: " for="saida" />
 						<h:inputText id="saida" label="Data de Saída"
-							value="#{clienteBean.contrato.dataFinal}" size="10"
+							value="#{clienteBean.dataFinal}" size="10"
 							maxlength="10" requiredMessage="Preencha a data de saída"
 							styleClass="campo-formulario">
-							<f:convertDateTime dataStyle="medium" />
 						</h:inputText>
 
 						<h:outputLabel value="Tipo de quarto: " for="quarto" />

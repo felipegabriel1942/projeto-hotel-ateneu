@@ -1,14 +1,27 @@
 package br.com.ateneu.hotel.bean;
 
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 
+
+
 import br.com.ateneu.hotel.usuario.Usuario;
 import br.com.ateneu.hotel.usuario.UsuarioDAOHibernate;
 import br.com.ateneu.hotel.usuario.UsuarioRN;
+import br.com.ateneu.hotel.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @ManagedBean(name = "usuarioBean")
 @SessionScoped
@@ -22,6 +35,8 @@ public class UsuarioBean {
 	private String confirmarSenha;
 	private String nomeDoUsuario;
 	private List<Usuario> lista;
+	private String caminho;
+	private String caminhoParaArmazenarPacote;
 
 	// Metodo utilizado para realizar o login no sistema
 	public String logar() {
@@ -50,12 +65,15 @@ public class UsuarioBean {
 	public String cadastroUsuario() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UsuarioRN usuarioRN = new UsuarioRN();
-		
-		System.out.println("Deu certo? " + confirmarSenha(this.confirmarSenha));
-		
+
 		if (confirmarSenha(this.confirmarSenha)) {
 			usuarioRN.salvar(this.usuario);
-			return "sucesso-cadastro-usuario?faces-redirect=true";
+			lista = null;
+			usuario = null;
+			FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário cadastrado com sucesso",
+					"");
+			FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
+			return "cadastro-usuario";
 		} else {
 			FacesMessage facesMessage = new FacesMessage("A senha deve ser igual a confirmação de senha");
 			context.addMessage(null, facesMessage);
@@ -72,30 +90,65 @@ public class UsuarioBean {
 		}
 
 	}
-	
+
 	public String deslogar() {
 		usuarioLogado = new Usuario();
 		return "index?faces-redirect=true";
 	}
-	
+
 	public String editarUsuario() {
-		
-		UsuarioRN usuarioRN = new UsuarioRN();
-		this.usuarioEdicao = usuarioRN.buscarPorLogin(usuario.getLogin());
 		return "editar-usuario";
 	}
-	
+
+	public String atualizarUsuario() {
+		UsuarioRN usuarioRN = new UsuarioRN();
+		usuarioRN.atualizarUsuario(usuario);
+		this.lista = null;
+		this.usuario = null;
+		return "administrar-usuario?faces-redirect=true";
+	}
+
+	public String excluirUsuario() {
+		UsuarioRN usuarioRN = new UsuarioRN();
+		usuarioRN.excluirUsuario(usuario);
+		this.lista = null;
+		this.usuario = null;
+		return "administrar-usuario";
+	}
+
 	/**
 	 * Metodo utilizado para trazer a lista de todos os usuarios
 	 * 
 	 * @return
 	 */
-	public List<Usuario> getLista(){
-		if(this.lista == null) {
+	public List<Usuario> getLista() {
+		if (this.lista == null) {
 			UsuarioRN usuarioRN = new UsuarioRN();
 			this.lista = usuarioRN.listar();
 		}
 		return this.lista;
+	}
+	
+	
+	public UsuarioBean() {
+		this.caminho = this.getClass().getClassLoader().getResource("").getPath();
+		this.caminhoParaArmazenarPacote = this.caminho + "br/com/ateneu/hotel/relatorio/";
+		System.out.println(caminho);
+	}
+	
+	/**
+	 * Metodo para imprimir relatorios
+	 * @throws JRException 
+	 */
+	public void imprimirUsuarios() throws JRException {
+		this.getLista();
+		JasperReport report = JasperCompileManager.compileReport(this.getCaminhoParaArmazenarPacote() + "usuarios.jrxml");
+		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(this.lista));
+		JasperExportManager.exportReportToPdfFile(print,"C:/Users/pinhe/Desktop/Relatorios/Relatorio_de_usuarios.pdf");
+		this.lista = null;
+		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Relatório gerado com sucesso","");
+		FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);
+		
 	}
 
 	// Getters e Setters
@@ -147,6 +200,21 @@ public class UsuarioBean {
 		this.usuarioEdicao = usuarioEdicao;
 	}
 
+	public String getCaminho() {
+		return caminho;
+	}
+
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
+	}
+
+	public String getCaminhoParaArmazenarPacote() {
+		return caminhoParaArmazenarPacote;
+	}
+
+	public void setCaminhoParaArmazenarPacote(String caminhoParaArmazenarPacote) {
+		this.caminhoParaArmazenarPacote = caminhoParaArmazenarPacote;
+	}
 	
 	
 }
