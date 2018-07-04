@@ -55,5 +55,12 @@ public class RNUtil {
 				return "baixa-estacao";
 			}
 	}
+	
+	public long diferençaDatas(Date dt1, Date dt2) {
+		long dia = 24L * 60L * 60L * 1000L;
+		long diferenca = ((dt1.getTime() - dt2.getTime())/dia);
+		
+		return diferenca;
+	}
 
 }

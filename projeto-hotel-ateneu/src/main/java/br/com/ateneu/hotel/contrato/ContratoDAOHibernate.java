@@ -42,7 +42,7 @@ public class ContratoDAOHibernate implements ContratoDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Contrato> contrato(Contrato contrato) {
+	public List<Contrato> listarContratos() {
 		return this.session.createCriteria(Contrato.class).list();
 	}
 

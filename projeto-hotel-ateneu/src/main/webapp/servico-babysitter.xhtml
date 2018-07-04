@@ -10,15 +10,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
+
 	<!-- Referência externa para icones -->
 	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	
-	
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
 	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
 
 	<title></title>
 </h:head>
@@ -28,38 +28,69 @@
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
-	<h:form id="babysitter">
-	
-			<h:panelGrid columns="2" cellpadding="5">
-				<f:facet name="header">
-					<h:outputText value="Serviço de Baby Sitter" />
-				</f:facet>
-	
-				<h:outputLabel value="Idade: " for="idadecrianca" />
-				<h:selectOneMenu id="idadecrianca" value="#">
-					<f:selectItem itemValue="2" itemLabel="2" />
-					<f:selectItem itemValue="3" itemLabel="3" />
-					<f:selectItem itemValue="4" itemLabel="4" />
-					<f:selectItem itemValue="5" itemLabel="5" />
-					<f:selectItem itemValue="6" itemLabel="6" />
-					<f:selectItem itemValue="7" itemLabel="7" />
-					<f:selectItem itemValue="8" itemLabel="8" />
-					<f:selectItem itemValue="9" itemLabel="9" />
-				</h:selectOneMenu>
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-female" style="padding-right: 5px; color: pink;"></i>Babysitter
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
 
-				<h:outputLabel value="Hora do Serviço: " for="horaServico" />
-					<input type="time" name="horaInicioServico" required="true"
-					requiredMessage="Informe a hora inicial do serviço"/> às
-					<input type="time" name="horaTerminoServico"/>
+	<!-- INICIO DO CORPO DO FOMULARIO -->
+	<div class="container">
+		<h:form>
+			<!-- MENSAGENS DE VALIDAÇÃO -->
+			<h:messages id="mensagens" errorClass="alert alert-danger "
+				warnClass="alert alert-warning" infoClass="alert alert-primary" />
+			<div class="area-formulario">
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Pesquisar contrato: " for="contrato" />
+					<h:inputText id="contrato"
+						value="#{clienteBean.contratoPesquisado}"
+						styleClass="campo-formulario" />
+					<h:commandButton value="Pesquisar"
+						action="#{clienteBean.pesquisarContrato}"
+						styleClass="btn btn-primary" />
 
-				<h:commandButton action="#" value="Salvar" class="btn btn-primary" />
-	
-		</h:panelGrid>
-	</h:form>
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Cliente em atendimento: " for="cliente" />
+					<h:outputText
+						value="#{clienteBean.contratoRestaurante.nomeCompleto}"
+						id="cliente" />
+				</h:panelGrid>
+			</div>
+		</h:form>
+
+		<h:form>
 
 
+			<div class="area-formulario"
+				style="margin-top: 10px; margin-bottom: 10px;">
+				<h:panelGrid columns="2" cellpadding="5">
+					
+					<h:outputLabel value="Babysitter: " for="babysitter" />
+					<h:selectOneMenu id="babysitter"
+						value="#{clienteBean.operacaoBabysitter.nomeServico}"
+						styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaBabysitter}" />
+					</h:selectOneMenu>
 
-	<!-- Optional JavaScript --> 
+				</h:panelGrid>
+				<h:commandButton action="#{clienteBean.adicionarServicoBabysitter}"
+					value="Salvar" styleClass="btn btn-primary"></h:commandButton>
+			</div>
+		</h:form>
+	</div>
+
+
+	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

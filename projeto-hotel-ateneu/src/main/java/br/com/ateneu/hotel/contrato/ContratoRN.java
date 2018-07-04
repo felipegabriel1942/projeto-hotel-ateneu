@@ -1,5 +1,7 @@
 package br.com.ateneu.hotel.contrato;
 
+import java.util.List;
+
 import br.com.ateneu.hotel.util.DAOFactory;
 
 public class ContratoRN {
@@ -30,5 +32,9 @@ public class ContratoRN {
 	
 	public void atualizar(Contrato contrato) {
 		this.contratoDAO.atualizar(contrato);
+	}
+	
+	public List<Contrato> listar(){
+		return this.contratoDAO.listarContratos();
 	}
 }

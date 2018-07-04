@@ -133,7 +133,6 @@ public class UsuarioBean {
 	public UsuarioBean() {
 		this.caminho = this.getClass().getClassLoader().getResource("").getPath();
 		this.caminhoParaArmazenarPacote = this.caminho + "br/com/ateneu/hotel/relatorio/";
-		System.out.println(caminho);
 	}
 	
 	/**

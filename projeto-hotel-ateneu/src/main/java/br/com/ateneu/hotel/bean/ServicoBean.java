@@ -18,7 +18,9 @@ public class ServicoBean {
 	private List<SelectItem> listaQuarto = popularNomeQuarto(getLista());
 	private List<SelectItem> listaBabysitter = popularListaBabySitter(getLista());
 	private List<SelectItem> listaCarro = popularListaCarro(getLista());
-	
+	private List<SelectItem> listaCafe = popularListaCafe(getLista());
+	private List<SelectItem> listaAlmoco = popularListaAlmoco(getLista());
+	private List<SelectItem> listaJantar = popularListaJantar(getLista());
 
 	public String cadastrarServico() {
 		ServicoRN servicoRN = new ServicoRN();
@@ -76,8 +78,44 @@ public class ServicoBean {
 		return s;
 	}
 	
+	public static List<SelectItem> popularListaCafe(List<Servico> lista) {
+
+		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
+		for (Servico obj : lista) {
+			if (obj.getTipo().equals("Cafe")) {
+				s.add(new SelectItem(obj.getNomeServico()));
+			}
+		}
+
+		return s;
+	}
 	
+	public static List<SelectItem> popularListaAlmoco(List<Servico> lista) {
+
+		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
+		for (Servico obj : lista) {
+			if (obj.getTipo().equals("Almoco")) {
+				s.add(new SelectItem(obj.getNomeServico()));
+			}
+		}
+
+		return s;
+	}
 	
+	public static List<SelectItem> popularListaJantar(List<Servico> lista) {
+
+		List<SelectItem> s = new ArrayList<>();
+		s.add(new SelectItem("Selecione..."));
+		for (Servico obj : lista) {
+			if (obj.getTipo().equals("Jantar")) {
+				s.add(new SelectItem(obj.getNomeServico()));
+			}
+		}
+
+		return s;
+	}
 	
 	
 	public String editarServico() {
@@ -129,6 +167,31 @@ public class ServicoBean {
 	public void setListaCarro(List<SelectItem> listaCarro) {
 		this.listaCarro = listaCarro;
 	}
+
+	public List<SelectItem> getListaCafe() {
+		return listaCafe;
+	}
+
+	public void setListaCafe(List<SelectItem> listaCafe) {
+		this.listaCafe = listaCafe;
+	}
+
+	public List<SelectItem> getListaAlmoco() {
+		return listaAlmoco;
+	}
+
+	public void setListaAlmoco(List<SelectItem> listaAlmoco) {
+		this.listaAlmoco = listaAlmoco;
+	}
+
+	public List<SelectItem> getListaJantar() {
+		return listaJantar;
+	}
+
+	public void setListaJantar(List<SelectItem> listaJantar) {
+		this.listaJantar = listaJantar;
+	}
+
 	
 	
 

@@ -45,8 +45,8 @@
 		<div class="areaUsuario">
 			<div id="titulo-pagina">
 				<h5>
-					<i class="fa fa-arrow-circle-o-right"
-						style="padding-right: 5px; color: green;"></i>Check-in
+					<i class="fa fa-bar-chart"
+						style="padding-right: 5px; color: green;"></i>Relatorios
 				</h5>
 			</div>
 			<div id="usuarioLogado">
@@ -56,17 +56,26 @@
 		</div>
 
 		<!-- INICIO DO CORPO DO FOMULARIO -->
-		
+
 		<h:form>
-			<h:messages infoClass="alert alert-primary"/>
-			<h:panelGrid columns="2">
-			<h:outputLabel value="Relátorio de usuarios:" for="relUsuarios"/>
-			<h:commandButton value="usuarios" actionListener="#{usuarioBean.imprimirUsuarios}"/>
-			
-			</h:panelGrid>
+			<div class="area-formulario">
+				<h:messages infoClass="alert alert-primary" />
+				<h:panelGrid columns="2" cellpadding="10">
+
+					<h:outputLabel value="Relátorio de usuarios:" for="relUsuarios" />
+					<h:commandButton value="Gerar" id="relUsuarios"
+						actionListener="#{usuarioBean.imprimirUsuarios}" styleClass="btn btn-primary"/>
+
+					<h:outputLabel value="Relátorio de contratos ativos:"
+						for="relContratos" />
+					<h:commandButton value="Gerar" id="relContratos"
+						actionListener="#{clienteBean.imprimirContratosAtivos}" styleClass="btn btn-primary"/>
+
+				</h:panelGrid>
+			</div>
 		</h:form>
 	</div>
-	
+
 
 
 	<!-- FIM DO CORPO DO FOMULARIO -->

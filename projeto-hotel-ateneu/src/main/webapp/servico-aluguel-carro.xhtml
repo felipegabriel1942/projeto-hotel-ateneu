@@ -27,44 +27,67 @@
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
-	<h:form id="aluguelCarros">
-		<h:messages />
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-automobile" style="padding-right: 5px; color: black;"></i>Aluguel de Carro
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
 
-		<h:panelGrid columns="2" cellpadding="5">
-			<f:facet name="header">
-				<h:outputText value="Aluguel de Carros" />
-			</f:facet>
-			
-			
-			<h:outputLabel value="Marca: " for="marcaCarro" />
-			<h:selectOneMenu id="marcaCarro" value="#">
-				<f:selectItem itemValue="Fiat" itemLabel="Fiat" />
-				<f:selectItem itemValue="Honda" itemLabel="Honda" />
-			</h:selectOneMenu>
-			
-			<h:outputLabel value="Quantidade de Diárias: " for="qtdDiarias" />
-			<h:inputText id="qtdDiarias"
-				value="" size="10"
-				required="true"
-				requiredMessage="Informe a quantidade de diárias" />
-			
-			<h:outputLabel value="Categoria: " for="categoriaCarro" />
-			<h:selectOneMenu id="categoriaCarro" value="#">
-				<f:selectItem itemValue="Executivo" itemLabel="Executivo" />
-				<f:selectItem itemValue="Luxo" itemLabel="Luxo" />
-			</h:selectOneMenu>
-			
-			<h:outputLabel value="Taxas: " for="taxasCarros" />
-			<input type="checkbox" value="seguro"> Seguro &nbsp;&nbsp;</input>
-			<input type="checkbox" value="tanqueCheio"> Tanque Cheio</input>
+	<!-- INICIO DO CORPO DO FOMULARIO -->
+	<div class="container">
+		<h:form>
+			<!-- MENSAGENS DE VALIDAÇÃO -->
+			<h:messages id="mensagens" errorClass="alert alert-danger "
+				warnClass="alert alert-warning" infoClass="alert alert-primary" />
+			<div class="area-formulario">
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Pesquisar contrato: " for="contrato" />
+					<h:inputText id="contrato"
+						value="#{clienteBean.contratoPesquisado}"
+						styleClass="campo-formulario" />
+					<h:commandButton value="Pesquisar"
+						action="#{clienteBean.pesquisarContrato}"
+						styleClass="btn btn-primary" />
 
-			<h:commandButton action="#"
-				value="Salvar" class="btn btn-primary"  />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Cliente em atendimento: " for="cliente" />
+					<h:outputText
+						value="#{clienteBean.contratoRestaurante.nomeCompleto}"
+						id="cliente" />
+				</h:panelGrid>
+			</div>
+		</h:form>
+
+		<h:form>
 
 
-		</h:panelGrid>
-	</h:form>
+			<div class="area-formulario"
+				style="margin-top: 10px; margin-bottom: 10px;">
+				<h:panelGrid columns="2" cellpadding="5">
+	
+					<h:outputLabel value="Carro: " for="carro" />
+					<h:selectOneMenu id="carro"
+						value="#{clienteBean.operacaoCarro.nomeServico}"
+						styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaCarro}" />
+					</h:selectOneMenu>
 
+				</h:panelGrid>
+				<h:commandButton action="#{clienteBean.adicionarServicoCarro}"
+					value="Salvar" styleClass="btn btn-primary"></h:commandButton>
+			</div>
+		</h:form>
+	</div>
+	
 	<!-- Optional JavaScript --> 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -28,6 +28,7 @@ public class Contrato implements Serializable{
 	private Integer statusContrato;
 	private String numCartaoCredito;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "cod_cliente")
 	private Cliente cliente;

@@ -58,8 +58,9 @@
 		<!-- INICIO DO CORPO DO FOMULARIO -->
 		<div class="container">
 			<h:form id="cadastro">
-			
-				<h:messages infoClass="alert alert-primary"/>
+
+				<h:messages id="mensagens" errorClass="alert alert-danger "
+					warnClass="alert alert-warning" infoClass="alert alert-primary" />
 				<h:inputHidden value="#{clienteBean.cliente.id}" />
 
 
@@ -89,10 +90,10 @@
 
 						<h:outputLabel value="Data de Nascimento: " for="nascimento" />
 						<h:inputText id="nascimento" label="Data Nascimento"
-							value="#{clienteBean.dataNascimento}" size="10"
-							maxlength="10" requiredMessage="Preencha a data de nascimento"
+							value="#{clienteBean.dataNascimento}" size="10" maxlength="10"
+							requiredMessage="Preencha a data de nascimento"
 							styleClass="campo-formulario">
-							
+
 						</h:inputText>
 
 						<h:outputLabel value="Celular: " for="celular" />
@@ -121,16 +122,16 @@
 
 						<h:outputLabel value="Data de Entrada: " for="entrada" />
 						<h:inputText id="entrada" label="Data de Entrada"
-							value="#{clienteBean.dataInicio}" size="10"
-							maxlength="10" requiredMessage="Preencha a data de entrada"
+							value="#{clienteBean.dataInicio}" size="10" maxlength="10"
+							requiredMessage="Preencha a data de entrada"
 							styleClass="campo-formulario">
-							
+
 						</h:inputText>
 
 						<h:outputLabel value="Data de Saída: " for="saida" />
 						<h:inputText id="saida" label="Data de Saída"
-							value="#{clienteBean.dataFinal}" size="10"
-							maxlength="10" requiredMessage="Preencha a data de saída"
+							value="#{clienteBean.dataFinal}" size="10" maxlength="10"
+							requiredMessage="Preencha a data de saída"
 							styleClass="campo-formulario">
 						</h:inputText>
 
@@ -146,7 +147,8 @@
 						<h:inputText id="qtdPessoas"
 							value="#{clienteBean.contrato.qtdPessoas}" size="5"
 							styleClass="campo-formulario" />
-
+						<h:outputText value="*Serviço obrigatório"
+							style="font-weight: bold; color: red; size:8;" />
 					</h:panelGrid>
 				</div>
 
@@ -174,6 +176,8 @@
 							<f:selectItems value="#{servicoBean.listaCarro}" />
 						</h:selectOneMenu>
 
+						<h:outputText value="*Serviços opcionais"
+							style="font-weight: bold; color: red; size:8;" />
 					</h:panelGrid>
 				</div>
 
@@ -184,7 +188,7 @@
 			</h:form>
 		</div>
 	</div>
-	
+
 
 
 	<!-- FIM DO CORPO DO FOMULARIO -->

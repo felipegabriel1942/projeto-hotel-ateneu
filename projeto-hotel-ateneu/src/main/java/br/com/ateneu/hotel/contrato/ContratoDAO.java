@@ -8,5 +8,5 @@ public interface ContratoDAO {
 	public void excluir(Contrato contrato);
 	public void atualizar(Contrato contrato);
 	public Contrato pesquisarPorContrato(Integer contrato);
-	public List<Contrato> contrato(Contrato contrato);
+	public List<Contrato> listarContratos();
 }

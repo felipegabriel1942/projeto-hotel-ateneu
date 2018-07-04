@@ -10,15 +10,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
+
 	<!-- Referência externa para icones -->
 	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	
-	
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
 	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
 
 	<title>Hotel Ateneu - Alimentação</title>
 </h:head>
@@ -28,49 +28,166 @@
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
-	<h:form id="alimentacao">
-		<h:messages />
-		
-		<h:panelGrid columns="3" cellpadding="5">
-			<h:outputLabel value="Pesquisar contrato: " for="contrato"/>
-			<h:inputText id="contrato" value="#{clienteBean.contratoPesquisado}"/>
-			<h:commandButton value="Pesquisar" action="#{clienteBean.pesquisarContrato}"/>
-		
-		</h:panelGrid>
-		
-		<h:panelGrid columns="2" cellpadding="5">
-			<f:facet name="header">Café da Manhã</f:facet>
-			<h:selectOneMenu value="#{clienteBean.operacoesRestauranteTemporario}">
-				<f:selectItem itemValue="cafe" itemLabel="cafe"/>
-				<f:selectItem itemValue="pao" itemLabel="Pão com Manteiga"/>
-				<f:selectItem itemValue="chocolate" itemLabel="Chocolate Batido"/>
-			</h:selectOneMenu>
-			
-			<h:selectOneMenu value="#{clienteBean.operacoesRestauranteTemporario}">
-				<f:selectItem itemValue="cafe" itemLabel="cafe"/>
-				<f:selectItem itemValue="pao" itemLabel="Pão com Manteiga"/>
-				<f:selectItem itemValue="chocolate" itemLabel="Chocolate Batido"/>
-			</h:selectOneMenu>
-		
-		
-		</h:panelGrid>
-		
-		<h:dataTable value="#{clienteBean.operacoesRestauranteTemporario}" var="tempOp">
-		
-		<h:column>
-			<f:facet name="header">Nome Serviço</f:facet>
-		
-		</h:column>
-		
-		
-		</h:dataTable>
-	
-		
-	</h:form>
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-cutlery" style="padding-right: 5px; color: red;"></i>Restaurante
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
+
+
+	<div class="container">
+		<h:form>
+			<!-- MENSAGENS DE VALIDAÇÃO -->
+			<h:messages id="mensagens" errorClass="alert alert-danger "
+				warnClass="alert alert-warning" infoClass="alert alert-primary" />
+			<div class="area-formulario">
+				<h:panelGrid columns="3" cellpadding="5">
+					<h:outputLabel value="Pesquisar contrato: " for="contrato" />
+					<h:inputText id="contrato"
+						value="#{clienteBean.contratoPesquisado}"
+						styleClass="campo-formulario" />
+					<h:commandButton value="Pesquisar"
+						action="#{clienteBean.pesquisarContrato}"
+						styleClass="btn btn-primary" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Cliente em atendimento: " for="cliente" />
+					<h:outputText
+						value="#{clienteBean.contratoRestaurante.nomeCompleto}"
+						id="cliente" />
+
+				</h:panelGrid>
+			</div>
+		</h:form>
+		<h:form id="alimentacao">
 
 
 
-	<!-- Optional JavaScript --> 
+			<div class="area-formulario" style="margin-top: 10px;">
+				<h:panelGrid columns="3">
+					<f:facet name="header">Café da Manhã</f:facet>
+
+
+					<h:outputLabel value="" />
+					<h:outputLabel value="Opção" />
+					<h:outputLabel value="Quantidade" />
+
+
+					<h:outputLabel value="1: " for="opcafe1" />
+					<h:selectOneMenu value="#{clienteBean.cafe1.nomeServico}"
+						id="opcafe1" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaCafe}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade1}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="2: " for="opcafe2" />
+					<h:selectOneMenu value="#{clienteBean.cafe2.nomeServico}"
+						id="opcafe2" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaCafe}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade2}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="3: " for="opcafe3" />
+					<h:selectOneMenu value="#{clienteBean.cafe3.nomeServico}"
+						id="opcafe3" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaCafe}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade3}" styleClass="campo-formulario" />
+				</h:panelGrid>
+			</div>
+
+			<div class="area-formulario" style="margin-top: 10px;">
+				<h:panelGrid columns="3" cellpadding="5">
+					<f:facet name="header">Almoço</f:facet>
+
+
+					<h:outputLabel value="" />
+					<h:outputLabel value="Opção" />
+					<h:outputLabel value="Quantidade" />
+
+
+					<h:outputLabel value="1: " for="opalmoco1" />
+					<h:selectOneMenu value="#{clienteBean.almoco1.nomeServico}"
+						id="opalmoco1" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaAlmoco}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade4}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="2: " for="opalmoco2" />
+					<h:selectOneMenu value="#{clienteBean.almoco2.nomeServico}"
+						id="opalmoco2" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaAlmoco}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade5}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="3: " for="opalmoco3" />
+					<h:selectOneMenu value="#{clienteBean.almoco3.nomeServico}"
+						id="opalmoco3" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaAlmoco}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade6}" styleClass="campo-formulario" />
+				</h:panelGrid>
+			</div>
+
+			<div class="area-formulario" style="margin-top: 10px;">
+				<h:panelGrid columns="3" cellpadding="5">
+					<f:facet name="header">Jantar</f:facet>
+
+
+					<h:outputLabel value="" />
+					<h:outputLabel value="Opção" />
+					<h:outputLabel value="Quantidade" />
+
+
+					<h:outputLabel value="1: " for="opjantar1" />
+					<h:selectOneMenu value="#{clienteBean.jantar1.nomeServico}"
+						id="opjantar1" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaJantar}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade7}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="2: " for="opjantar2" />
+					<h:selectOneMenu value="#{clienteBean.jantar2.nomeServico}"
+						id="opjantar2" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaJantar}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade8}" styleClass="campo-formulario" />
+
+					<h:outputLabel value="3: " for="opjantar3" />
+					<h:selectOneMenu value="#{clienteBean.jantar3.nomeServico}"
+						id="opjantar3" styleClass="campo-formulario">
+						<f:selectItems value="#{servicoBean.listaJantar}" />
+					</h:selectOneMenu>
+					<h:inputText size="2" style="margin-left: 10px;"
+						value="#{clienteBean.quantidade9}" styleClass="campo-formulario" />
+				</h:panelGrid>
+			</div>
+
+			<h:commandButton value="Fechar conta"
+				action="#{clienteBean.fecharPedido}" styleClass="btn btn-primary"
+				style="margin-left: 15px; margin-top: 15px;" />
+		</h:form>
+	</div>
+
+
+	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
