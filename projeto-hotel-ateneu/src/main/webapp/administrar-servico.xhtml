@@ -10,68 +10,84 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
+
 	<!-- Referência externa para icones -->
 	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	
-		
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
 	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
 	<title>Hotel Ateneu</title>
-	
+
 </h:head>
 <h:body>
 
 	<!-- MENU DE NAVEGAÇÃO -->
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
-	
-	<h5>Administrar Serviços</h5>
-	
-	<h:form id="listarServicos">
-		<h:dataTable value="#{servicoBean.lista}" var="servico" cellspacing="5" cellpadding="5">
-			<h:column>
-				<f:facet name="header">Código</f:facet>
+
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-black-tie" style="padding-right: 5px; color: blue;"></i>Administração
+				de Serviços
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
+
+	<div class="container">
+		<h:form id="listarServicos">
+			<div class="area-formulario">
+				<h:dataTable value="#{servicoBean.lista}" var="servico"
+					cellspacing="5" cellpadding="5">
+					<h:column>
+						<f:facet name="header">Código</f:facet>
 				#{servico.id}
 			</h:column>
 
-			<h:column>
-				<f:facet name="header">Nome do Serviço</f:facet>
+					<h:column>
+						<f:facet name="header">Nome do Serviço</f:facet>
 				#{servico.nomeServico}	
 			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Tipo do Serviço</f:facet>
+
+					<h:column>
+						<f:facet name="header">Tipo do Serviço</f:facet>
 				#{servico.tipo}			
 			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Quantidade total</f:facet>
+
+					<h:column>
+						<f:facet name="header">Quantidade total</f:facet>
 				#{servico.quantidadeTotal}
 			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Valor do Serviço</f:facet>
+
+					<h:column>
+						<f:facet name="header">Valor do Serviço</f:facet>
 				#{servico.valor}			
 			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Editar</f:facet>
-				<h:commandLink action="#{servicoBean.editarServico}">editar</h:commandLink>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink action="#{servicoBean.excluirServico}">excluir
-				<f:setPropertyActionListener value="#{servico}" target="#{servicoBean.servico}"/>
-				</h:commandLink>
-			</h:column>
-		</h:dataTable>
 
-	</h:form>
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="#{servicoBean.editarServico}">editar</h:commandLink>
+					</h:column>
 
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						<h:commandLink action="#{servicoBean.excluirServico}">excluir
+				<f:setPropertyActionListener value="#{servico}"
+								target="#{servicoBean.servico}" />
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</h:form>
+	</div>
 
 
 	<!-- Optional JavaScript -->

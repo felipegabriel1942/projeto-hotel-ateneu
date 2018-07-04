@@ -144,7 +144,7 @@ public class UsuarioBean {
 		this.getLista();
 		JasperReport report = JasperCompileManager.compileReport(this.getCaminhoParaArmazenarPacote() + "usuarios.jrxml");
 		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(this.lista));
-		JasperExportManager.exportReportToPdfFile(print,"C:/Users/pinhe/Desktop/Relatorios/Relatorio_de_usuarios.pdf");
+		JasperExportManager.exportReportToPdfFile(print,"C:/Users/pinhe/Desktop/RELATORIOS_HOTEL/Relatorio_de_usuarios.pdf");
 		this.lista = null;
 		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO,"Relatório gerado com sucesso","");
 		FacesContext.getCurrentInstance().addMessage("mensagens", facesMessage);

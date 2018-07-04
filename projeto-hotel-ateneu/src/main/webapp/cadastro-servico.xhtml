@@ -10,15 +10,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	
+
 	<!-- Referência externa para icones -->
 	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-	
-		
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
 	<!-- Bootstrap CSS -->
-	<h:outputStylesheet library="css" name="/bootstrap.css"/>	
-	<h:outputStylesheet library="css" name="/estilo.css"/>
+	<h:outputStylesheet library="css" name="/bootstrap.css" />
+	<h:outputStylesheet library="css" name="/estilo.css" />
 
 	<title>Hotel Ateneu</title>
 </h:head>
@@ -28,47 +28,62 @@
 	<ui:include src="/templates/menu-navegacao.xhtml"></ui:include>
 	<!--  FIM DO MENU DE NAVEGAÇÃO -->
 
-	<h:form id="cadastroServico">
-		<h:messages />
 
-		<h:panelGrid columns="2" cellpadding="5">
-			<f:facet name="header">
-				<h:outputText value="Cadastro de Serviços" />
-			</f:facet>
+	<!-- TITULO DA PAGINA E NOME DO USUARIO LOGADO -->
+	<div class="areaUsuario">
+		<div id="titulo-pagina">
+			<h5>
+				<i class="fa fa-arrow-circle-o-right"
+					style="padding-right: 5px; color: green;"></i>Cadastro de Serviço
+			</h5>
+		</div>
+		<div id="usuarioLogado">
+			<b>Usuário: </b>
+			<h:outputLabel value="#{usuarioBean.usuarioLogado.nomeCompleto}" />
+		</div>
+	</div>
 
-			<h:outputLabel value="Tipo do serviço: " for="tipoServico" />
-			<h:selectOneMenu id="tipoServico" value="#{servicoBean.servico.tipo}">
-				<f:selectItem itemValue="Quarto" itemLabel="Quarto" />
-				<f:selectItem itemValue="Babysitter" itemLabel="Babysitter" />
-				<f:selectItem itemValue="Carro" itemLabel="Carro" />
-				<f:selectItem itemValue="Alimentação" itemLabel="Alimentação" />
-			</h:selectOneMenu>
+	<div class="container">
+		<h:form id="cadastroServico">
+			<h:messages />
 
+			<div class="area-formulario">
+				<h:panelGrid columns="2" cellpadding="5">
 
-			<h:outputLabel value="Nome do serviço: " for="nomeServico" />
-			<h:inputText id="nomeServico"
-				value="#{servicoBean.servico.nomeServico}" size="50" required="true"
-				requiredMessage="Informe o nome do serviço" />
-
-			<h:outputLabel value="Valor do serviço: " for="valorServico" />
-			<h:inputText id="valorServico" value="#{servicoBean.servico.valor}"
-				size="10" required="true"
-				requiredMessage="Informe o valor do serviço" />
-
-			<h:outputLabel value="Quantidade total do serviço: " for="qtdServico" />
-			<h:inputText id="qtdServico"
-				value="#{servicoBean.servico.quantidadeTotal}" size="10"
-				required="true"
-				requiredMessage="Informe a quantidade total do serviço" />
+					<h:outputLabel value="Tipo do serviço: " for="tipoServico" />
+					<h:selectOneMenu id="tipoServico"
+						value="#{servicoBean.servico.tipo}">
+						<f:selectItem itemValue="Quarto" itemLabel="Quarto" />
+						<f:selectItem itemValue="Babysitter" itemLabel="Babysitter" />
+						<f:selectItem itemValue="Carro" itemLabel="Carro" />
+						<f:selectItem itemValue="Alimentação" itemLabel="Alimentação" />
+					</h:selectOneMenu>
 
 
+					<h:outputLabel value="Nome do serviço: " for="nomeServico" />
+					<h:inputText id="nomeServico"
+						value="#{servicoBean.servico.nomeServico}" size="50"
+						required="true" requiredMessage="Informe o nome do serviço" />
+
+					<h:outputLabel value="Valor do serviço: " for="valorServico" />
+					<h:inputText id="valorServico" value="#{servicoBean.servico.valor}"
+						size="10" required="true"
+						requiredMessage="Informe o valor do serviço" />
+
+					<h:outputLabel value="Quantidade total do serviço: "
+						for="qtdServico" />
+					<h:inputText id="qtdServico"
+						value="#{servicoBean.servico.quantidadeTotal}" size="10"
+						required="true"
+						requiredMessage="Informe a quantidade total do serviço" />
+				</h:panelGrid>
+
+			</div>
 			<h:commandButton action="#{servicoBean.cadastrarServico}"
-				value="Salvar" />
-
-
-		</h:panelGrid>
-	</h:form>
-
+				value="Salvar" styleClass="btn btn-primary" style="margin-top: 10px;"/>
+				
+		</h:form>
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
